@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salud y Cuidados - Vacunación</title>
+  <link rel="stylesheet" href="vistaVacunacion.css">
+  <link href="fonts/fuente1.css" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/logo 1.avif" alt="Logo" class="logo-img">
+      <span>Salud y Cuidados</span>
+    </div>
+    <nav class="menu">
+      <a href="#">Inicio</a>
+      <a href="#">Consultas</a>
+      <a href="#">Estudios</a>
+      <a href="#" class="active">Vacunación</a>
+      <a href="#">Recordatorios</a>
+      <a href="#">Perfil</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Control de Vacunación</h1>
+    <p>Mantén actualizado tu esquema de vacunación y nunca pierdas una dosis importante</p>
+  </section>
+
+  <main class="content">
+    <div class="content-top">
+      <div class="filter-box">
+        <label for="vacuna">Filtrar por vacuna</label>
+        <select id="vacuna">
+          <option>Todas las vacunas</option>
+          <option>COVID-19</option>
+          <option>Influenza</option>
+          <option>Hepatitis B</option>
+          <option>Tétanos</option>
+        </select>
+      </div>
+
+      <div class="buttons">
+        <button class="btn blue">
+          💉 Registrar Vacuna
+        </button>
+        <button class="btn green">
+          🔔 Crear Recordatorio
+        </button>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
