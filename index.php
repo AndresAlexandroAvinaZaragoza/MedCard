@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MedCard — Registro de Salud</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="vistaIndex.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="logo-placeholder.png" alt="MedCard" class="logo" />
+        <img src="img/logo 1.avif" alt="MedCard" class="logo" />
         <h1>MedCard</h1>
       </div>
       <nav class="nav">
