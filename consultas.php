@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Consultas Médicas</title>
-    <link rel="stylesheet" href="vistaConsultas.css">
+    <link rel="stylesheet" href="vistaConsulta.css">
 </head>
 <body>
     <!-- Barra de navegación -->
     <header class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Logo Salud y Cuidados">
+            <img src="img/logo 1.avif" alt="Logo Salud y Cuidados">
             <h1>Salud y Cuidados</h1>
         </div>
         <nav>

@@ -1,0 +1,116 @@
+/* Fuente general */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.logo h1 {
+    color: #178aad;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.navbar nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #178aad;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #0e5d72;
+}
+
+/* Encabezado azul */
+.hero {
+    background-color: #2896b4;
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Filtro y botón */
+.filtro-consultas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.filtro label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.filtro select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 230px;
+    font-size: 1rem;
+}
+
+.btn-agregar {
+    background-color: #2896b4;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: #1d7a93;
+}
+
+/* Sección de consultas */
+.consultas-lista {
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    margin-top: 50px;
+}

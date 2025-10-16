@@ -25,7 +25,7 @@
   </header>
 
   <section class="hero">
-    <h2>Bienvenido a tu Registro de Salud Personal</h2>
+    <h2 >Bienvenido a tu Registro de Salud Personal</h2>
     <p>Gestiona tus consultas médicas, estudios y vacunación de manera organizada y segura</p>
     <div class="hero-buttons">
       <button class="btn btn-primary">Registrar Consulta</button>
