@@ -14,7 +14,7 @@
       <span>Salud y Cuidados</span>
     </div>
     <nav>
-      <a href="#">Inicio</a>
+      <a href="http://localhost/CardMed/index.php#">Inicio</a>
       <a href="#">Consultas</a>
       <a href="#">Estudios</a>
       <a href="#">Vacunación</a>

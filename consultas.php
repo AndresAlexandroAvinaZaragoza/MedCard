@@ -13,7 +13,7 @@
             <img src="img/logo 1.avif" alt="Logo Salud y Cuidados">
             <h1>Salud y Cuidados</h1>
         </div>
-        <nav>
+        <nav class="menu">
             <a href="#">Inicio</a>
             <a href="#">Consultas</a>
             <a href="#">Estudios</a>

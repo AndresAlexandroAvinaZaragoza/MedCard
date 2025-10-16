@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 60px;
+    padding: 4rem 60px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 }
 
@@ -32,6 +32,10 @@ body {
     color: #178aad;
     font-size: 1.4rem;
     font-weight: 700;
+}
+
+.menu{
+  font-size: large;
 }
 
 .navbar nav a {

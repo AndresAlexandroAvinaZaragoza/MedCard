@@ -17,25 +17,37 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1rem 2rem;
+  padding: 2rem 60px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
+.navbar nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #2698bb;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
 .logo {
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-size: 1.25rem;
-  color: #0083b0;
+  font-size: 30px;
+  color: #2691b2;
 }
 
 .logo-img {
-  width: 32px;
-  height: 32px;
+  width: 55px;
+  height: 55px;
   margin-right: 8px;
+}
+
+.menu{
+  font-size: large;
 }
 
 .menu a {
@@ -46,14 +58,11 @@ body {
   transition: color 0.2s ease;
 }
 
-.menu a:hover,
-.menu a.active {
-  color: #0083b0;
-}
+
 
 /* ---------- HERO SECTION ---------- */
 .hero {
-  background-color: #1c98b4;
+  background-color: #1089ad;
   color: white;
   text-align: center;
   padding: 4rem 1rem;

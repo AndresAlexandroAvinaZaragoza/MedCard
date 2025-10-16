@@ -31,8 +31,6 @@ body {
     font-weight: 500;
     transition: 0.3s;
 }
-  
-
 
 .logo {
   display: flex;
@@ -69,21 +67,23 @@ body {
 
 /* ===== Hero ===== */
 .hero {
-  background-color: #1089ad;
+  background-color: #2698bb;
   text-align: center;
   color: white;
-  padding: 80px 20px;
+  padding: 150px 20px;
 }
 
 .hero h2 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+  font-size: 3rem;
+  margin-bottom: 1rem;
   font-weight: 700;
+  color: #1f2d3d;
 }
 
 .hero p {
   font-size: 1.1rem;
   margin-bottom: 30px;
+  color: black;
 }
 
 .hero-buttons {
