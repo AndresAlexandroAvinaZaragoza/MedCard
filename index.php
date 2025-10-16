@@ -13,7 +13,7 @@
       <h1>Salud y Cuidados</h1>
     </div>
     <nav>
-      <ul>
+      <ul class="menu">
         <li><a href="#">Inicio</a></li>
         <li><a href="#">Consultas</a></li>
         <li><a href="#">Estudios</a></li>
