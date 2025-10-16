@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f7f9fb;
+  color: #1a1a1a;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2693b8;
+}
+
+.logo img {
+  width: 35px;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #2b8ab6;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover, .active {
+  color: #0f6e91;
+}
+
+/* ===== PERFIL HEADER ===== */
+.perfil-header {
+  text-align: center;
+  background-color: #2693b8;
+  color: white;
+  padding: 3rem 1rem;
+}
+
+.perfil-header .perfil-img img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin-bottom: 1rem;
+}
+
+.perfil-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== CONTENIDO ===== */
+.perfil-contenido {
+  max-width: 900px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ===== INFO PERSONAL ===== */
+.info-personal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 2rem;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.info-header h2 {
+  font-size: 1.4rem;
+}
+
+.editar {
+  background-color: #2b8ab6;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.editar:hover {
+  background-color: #1f6c8f;
+}
+
+.info-datos p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* ===== RESUMEN DE SALUD ===== */
+.resumen-salud {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.resumen-salud h2 {
+  margin-bottom: 1rem;
+}
+
+.resumen-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 150px;
+  text-align: center;
+  background-color: #f3f6f8;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.card i {
+  font-size: 1.8rem;
+  color: #2693b8;
+}
+
+.card h3 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin: 0.5rem 0;
+}
+
+.card p {
+  color: #555;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 3rem;
+}
