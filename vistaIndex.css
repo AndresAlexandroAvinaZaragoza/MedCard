@@ -11,7 +11,7 @@ body {
 }
 
 .letra {
-    font-size:medium;
+    font-size:small;
 }
 
 /* ===== Navbar ===== */
@@ -28,7 +28,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: ;
+  font-size: large;
 }
 
 .logo img {
