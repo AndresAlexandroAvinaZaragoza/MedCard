@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salud y Cuidados</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="vistaIndex.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="logo" />
+      <img src="img/logo 1.avif" alt="logo" />
       <h1>Salud y Cuidados</h1>
     </div>
     <nav>
@@ -49,7 +49,7 @@
     </section>
 
     <section class="section acciones">
-      <h3>Acciones Rápidas</h3>
+      <h2>Acciones Rápidas</h2>
       <div class="acciones-grid">
         <div class="card">Ver Todas las Consultas</div>
         <div class="card">Gestionar Estudios</div>
