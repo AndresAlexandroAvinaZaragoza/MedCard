@@ -9,7 +9,7 @@
 <body>
   <header class="navbar">
     <div class="logo">
-      <img src="img/logo 1.avif" alt="logo" />
+      <img src="img/logo 1" alt="logo" />
       <h1>Salud y Cuidados</h1>
     </div>
     <nav>
