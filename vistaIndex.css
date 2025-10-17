@@ -16,7 +16,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem 60px;
+  padding: 3.5rem 60px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
@@ -70,20 +70,20 @@ body {
   background-color: #2698bb;
   text-align: center;
   color: white;
-  padding: 150px 20px;
+  padding: 130px 20px;
 }
 
 .hero h2 {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   font-weight: 700;
   color: #1f2d3d;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  color: black;
+  font-size: 1.4rem;
+  margin-bottom: 50px;
+  color: rgb(46, 46, 46);
 }
 
 .hero-buttons {
@@ -97,13 +97,13 @@ body {
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: 0.3s;
 }
 
 .btn-primary {
   background-color: #3eb6a5;
-  color: white;
+  color: #1f2d3d;
 }
 
 .btn-primary:hover {
@@ -111,21 +111,21 @@ body {
 }
 
 .btn-secondary {
-  background-color: white;
-  color: #2493af;
+  background-color: #2698bb;
+  color: white;
 }
 
 .btn-secondary:hover {
-  background-color: #f3f3f3;
+  background-color: gray;
 }
 
 /* ===== Main Content ===== */
 .content {
-  padding: 40px 60px;
+  padding: 40px 110px;
 }
 
 .section {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .section-header {
@@ -135,7 +135,7 @@ body {
 }
 
 .section-header h3 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #1f2d3d;
 }
 
@@ -151,6 +151,10 @@ body {
 }
 
 /* ===== Acciones Rápidas ===== */
+.acciones h2{
+  font-size: 2rem;
+}
+
 .acciones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

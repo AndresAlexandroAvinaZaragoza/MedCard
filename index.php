@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salud y Cuidados</title>
   <link rel="stylesheet" href="vistaIndex.css" />
+  <link href="fonts/fuente1.css" rel="Fontes" />
 </head>
 <body>
   <header class="navbar">
