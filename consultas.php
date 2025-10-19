@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historial de Consultas Médicas</title>
     <link rel="stylesheet" href="vistaConsulta.css">
+    <link href="fonts/fuente1.css" rel="Fontes" />
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -34,7 +35,6 @@
         <div class="filtro">
             <label for="especialidad">Filtrar por Especialidad</label>
             <select id="especialidad">
-                <option>Todas las Especialidades</option>
                 <option>Medicina General</option>
                 <option>Pediatría</option>
                 <option>Cardiología</option>
