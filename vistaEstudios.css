@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1.3rem 60px;
+  padding: 1.8rem 60px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -27,39 +27,44 @@ body {
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-size: 27px;
+  font-size: 25px;
   color: #2691b2;
 }
 
 .logo-img {
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
   margin-right: 8px;
 }
 
 .menu a {
   margin-left: 1.5rem;
   text-decoration: none;
-  color: #374151;
+  color: #5aabc6;
   font-weight: 500;
   transition: color 0.2s ease;
+  font-size: large;
 }
-
+/*
 .menu a:hover,
 .menu a.active {
   color: #0083b0;
+}*/
+.navbar nav a:hover {
+    color: #0e5d72;
 }
+
 
 /* ---------- HERO SECTION ---------- */
 .hero {
-  background-color: #1c98b4;
+  background-color: #1997b9;
   color: white;
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 3.9rem 1rem;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -73,10 +78,10 @@ body {
 
 /* ---------- MAIN CONTENT ---------- */
 .content {
-  max-width: 900px;
+  max-width: 80rem;
   margin: 2rem auto;
   background: #fff;
-  padding: 2rem;
+  padding: 2rem 4rem;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
@@ -124,7 +129,9 @@ body {
 }
 
 .filter-box label {
-  font-weight: 600;
+  display: inline-block;
+  width: 200px;
+  font-weight: 600;  
   color: #374151;
 }
 
