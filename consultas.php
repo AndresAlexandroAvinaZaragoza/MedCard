@@ -52,5 +52,64 @@
         <p>No hay consultas registradas aún.</p>
     </section>
 
+    <!-- Modal: Agregar Nueva Consulta -->
+    <div id="modalConsulta" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar">&times;</span>
+            <h2>Agregar Nueva Consulta</h2>
+
+            <form>
+                <label>Fecha de Consulta</label>
+                <input type="date" required>
+
+                <label>Nombre del Médico</label>
+                <input type="text" placeholder="Dr. Juan Pérez" required>
+
+                <label>Especialidad</label>
+                <select required>
+                    <option value="">Seleccionar especialidad</option>
+                    <option>Medicina General</option>
+                    <option>Pediatría</option>
+                    <option>Cardiología</option>
+                    <option>Dermatología</option>
+                </select>
+
+                <label>Diagnóstico</label>
+                <input type="text" placeholder="Descripción del diagnóstico">
+
+                <label>Tratamiento</label>
+                <input type="text" placeholder="Descripción del tratamiento">
+
+                <label>Notas Adicionales</label>
+                <textarea placeholder="Notas opcionales"></textarea>
+
+                <button type="submit" class="btn-guardar">Guardar Consulta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const modal = document.getElementById("modalConsulta");
+        const btnAbrir = document.querySelector(".btn-agregar");
+        const btnCerrar = document.querySelector(".cerrar");
+
+        // Abrir modal
+        btnAbrir.onclick = () => {
+            modal.style.display = "flex"; // usamos flex para centrar
+        };
+
+        // Cerrar modal
+        btnCerrar.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        // Cerrar al hacer clic fuera del contenido
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 </body>
 </html>
