@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 3rem;
+  padding: 1.8rem 60px;
   background-color: white;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
@@ -23,26 +23,31 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
   font-weight: 700;
-  font-size: 1.2rem;
-  color: #2693b8;
+  font-size: 25px;
+  color: #2691b2;
 }
 
 .logo img {
-  width: 35px;
+  width: 45px;
+  height: 45px;
+  margin-right: 8px;
 }
 
+
+
 nav a {
-  margin-left: 20px;
+  margin-left: 23px;
   text-decoration: none;
   color: #2b8ab6;
   font-weight: 500;
   transition: 0.3s;
+  font-size: large;
 }
 
+
 nav a:hover, .active {
-  color: #0f6e91;
+  color: #0e5d72;
 }
 
 /* ===== PERFIL HEADER ===== */
@@ -50,7 +55,7 @@ nav a:hover, .active {
   text-align: center;
   background-color: #2693b8;
   color: white;
-  padding: 3rem 1rem;
+  padding: 4.5rem 1rem;
 }
 
 .perfil-header .perfil-img img {
@@ -58,20 +63,25 @@ nav a:hover, .active {
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid white;
+  border: 4px solid white;
   margin-bottom: 1rem;
 }
 
 .perfil-header h1 {
-  font-size: 2rem;
+  font-size: 2.3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+}
+
+.perfil-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
 /* ===== CONTENIDO ===== */
 .perfil-contenido {
   max-width: 900px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -100,10 +110,11 @@ nav a:hover, .active {
   background-color: #2b8ab6;
   color: white;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 0.9rem;
 }
 
 .editar:hover {
@@ -111,9 +122,9 @@ nav a:hover, .active {
 }
 
 .info-datos p {
-  margin: 0.5rem 0;
+  margin: 2rem 0;
   font-size: 1rem;
-  color: #444;
+  color: #929292;
 }
 
 /* ===== RESUMEN DE SALUD ===== */

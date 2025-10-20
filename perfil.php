@@ -25,7 +25,7 @@
 
   <section class="perfil-header">
     <div class="perfil-img">
-      <img src="https://cdn.pixabay.com/photo/2017/08/06/22/01/doctor-2593809_960_720.jpg" alt="foto perfil">
+      <img src="img/logo 1.avif" alt="foto perfil">
     </div>
     <h1>Mi Perfil de Salud</h1>
     <p>Gestiona tu información personal y datos de salud</p>

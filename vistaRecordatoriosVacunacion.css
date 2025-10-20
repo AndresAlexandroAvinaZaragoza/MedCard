@@ -51,12 +51,11 @@ body {
 }
 
 .menu a {
-  margin-left: 1.5rem;
+  margin-left: 20px;
   text-decoration: none;
-  color: #5aabc6;
+  color: #2b8ab6;
   font-weight: 500;
-  transition: color 0.2s ease;
-  font-size: large;
+  transition: 0.3s;
 }
 
 .navbar nav a:hover {
