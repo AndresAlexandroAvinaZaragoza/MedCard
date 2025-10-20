@@ -48,6 +48,61 @@
       </select>
     </div>
   </main>
+
+  
+  <!-- MODAL Para subir Estudios-->
+  <div id="modalEstudio" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar">&times;</span>
+      <h2>Subir Nuevo Estudio</h2>
+
+      <form>
+        <label>Nombre del Estudio</label>
+        <input type="text" placeholder="Ej. Hemograma completo" required>
+
+        <label>Tipo de Estudio</label>
+        <select required>
+          <option value="">Seleccionar tipo</option>
+          <option>Análisis de sangre</option>
+          <option>Rayos X</option>
+          <option>Resonancia magnética</option>
+          <option>Ultrasonido</option>
+        </select>
+
+        <label>Fecha del Estudio</label>
+        <input type="date" required>
+
+        <label>Archivo (PDF o Imagen)</label>
+        <input type="file" accept=".pdf, .jpg, .png, .jpeg" required>
+
+        <label>Notas Adicionales</label>
+        <textarea placeholder="Información relevante sobre el estudio (opcional)"></textarea>
+
+        <button type="submit" class="btn-guardar">Guardar Estudio</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const modal = document.getElementById("modalEstudio");
+    const btnAbrir = document.querySelector(".btn-upload");
+    const btnCerrar = document.querySelector(".cerrar");
+
+    btnAbrir.onclick = () => {
+      modal.style.display = "flex";
+    };
+
+    btnCerrar.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
 </body>
 </html>
 

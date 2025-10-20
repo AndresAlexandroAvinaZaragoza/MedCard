@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <header class="navbar">
     <div class="logo">
       <img src="img/logo 1.avif" alt="logo">
@@ -74,6 +75,37 @@
     <p>© 2025 Salud y Cuidados</p>
   </footer>
 
-  <script src="https://kit.fontawesome.com/a2d9a67e54.js" crossorigin="anonymous"></script>
+
+  
+
+  <!-- Modal -->
+  <div id="modalPerfil" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar">&times;</span>
+      <h2>Editar Perfil</h2>
+      <form id="formPerfil">
+        <label>Nombre Completo</label>
+        <input type="text" id="nombre" required>
+
+        <label>Correo Electrónico</label>
+        <input type="email" id="email" required>
+
+        <label>Fecha de Nacimiento</label>
+        <input type="date" id="fechaNacimiento" required>
+
+        <label>Teléfono</label>
+        <input type="tel" id="telefono">
+
+        <label>Tipo de Sangre</label>
+        <input type="text" id="tipoSangre">
+
+        <label>Alergias</label>
+        <input type="text" id="alergias">
+
+        <button type="submit" class="btn-guardar">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+  <script src="JS/perfil.js"></script>  
 </body>
 </html>
