@@ -32,7 +32,7 @@
     <div class="content-header">
       <h2>Mis Estudios</h2>
       <button class="btn-upload">
-        <i class="icon">📤</i> Subir Nuevo Estudio
+        <i class="icon">📤</i>   Subir Nuevo Estudio
       </button>
     </div>
     <p class="subtext">Organiza y accede a tus documentos médicos cuando los necesites</p>

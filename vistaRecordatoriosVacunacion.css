@@ -17,7 +17,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 2rem 60px;
+  padding: 1.8rem 60px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -36,13 +36,13 @@ body {
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 25px;
   color: #2691b2;
 }
 
 .logo-img {
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   margin-right: 8px;
 }
 
@@ -53,31 +53,31 @@ body {
 .menu a {
   margin-left: 1.5rem;
   text-decoration: none;
-  color: #374151;
+  color: #5aabc6;
   font-weight: 500;
   transition: color 0.2s ease;
+  font-size: large;
 }
 
 
 
 /* ---------- HERO SECTION ---------- */
 .hero {
-  background-color: #1089ad;
+  background-color: #1997b9;
   color: white;
-  text-align: center;
-  padding: 4rem 1rem;
+  text-align: left;
+  padding: 45px 150px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  max-width: 650px;
-  margin: 0 auto;
+  font-size: 1.2rem;
+  max-width: 950px;
   line-height: 1.6;
 }
 

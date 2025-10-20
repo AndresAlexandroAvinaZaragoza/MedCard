@@ -115,6 +115,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   transition: background 0.2s ease;
+  font-size: medium;
 }
 
 .btn-upload:hover {
