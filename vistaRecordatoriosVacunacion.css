@@ -59,7 +59,9 @@ body {
   font-size: large;
 }
 
-
+.navbar nav a:hover {
+    color: #0e5d72;
+}
 
 /* ---------- HERO SECTION ---------- */
 .hero {

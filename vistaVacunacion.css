@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 1rem 2rem;
+  padding: 1.8rem 60px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
@@ -27,48 +27,51 @@ body {
   display: flex;
   align-items: center;
   font-weight: 700;
-  font-size: 1.25rem;
-  color: #0083b0;
+  font-size: 25px;
+  color: #2691b2;
 }
 
 .logo-img {
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
   margin-right: 8px;
+}
+
+.menu{
+  font-size: large;
 }
 
 .menu a {
   margin-left: 1.5rem;
   text-decoration: none;
-  color: #374151;
+  color: #2698bb;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.menu a:hover,
-.menu a.active {
-  color: #0083b0;
+.navbar nav a:hover {
+    color: #0e5d72;
 }
 
 /* ---------- HERO SECTION ---------- */
 .hero {
-  background-color: #1c98b4;
-  color: white;
-  text-align: center;
-  padding: 4rem 1rem;
+  background-color: #1997b9;
+  color: #1f2d3d;
+  text-align: left;
+  padding: 45px 150px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .hero p {
   font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
   line-height: 1.6;
+  color: white;
 }
 
 /* ---------- MAIN CONTENT ---------- */
