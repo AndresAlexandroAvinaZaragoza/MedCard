@@ -63,7 +63,7 @@ body {
 /* Botón menú hamburguesa (☰) */
 .menu-btn {
   display: none;
-  font-size: 26px;
+  font-size: 40px;
   background: none;
   border: none;
   color: #2691b2;
@@ -113,8 +113,6 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-
-
   .nav-links {
     display: none; /* ocultar menú superior */
   }
