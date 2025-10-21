@@ -15,12 +15,12 @@
       <span>Salud y Cuidados</span>
     </div>
     <nav class="menu">
-      <a href="inicio.php">Inicio</a>
+      <a href="index.php">Inicio</a>
       <a href="consultas.php">Consultas</a>
       <a href="estudios.php">Estudios</a>
       <a href="vacunacion.php">Vacunación</a>
-      <a href="#" class="active">Recordatorios</a>
-      <a href="#">Perfil</a>
+      <a href="recordatoriosVacunacion.php">Recordatorios</a>
+      <a href="perfil.php">Perfil</a>
     </nav>
   </header>
 

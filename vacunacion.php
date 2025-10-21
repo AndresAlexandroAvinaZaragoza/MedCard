@@ -14,12 +14,12 @@
       <span>Salud y Cuidados</span>
     </div>
     <nav class="menu">
-      <a href="#">Inicio</a>
-      <a href="#">Consultas</a>
-      <a href="#">Estudios</a>
-      <a href="#" class="active">Vacunación</a>
-      <a href="#">Recordatorios</a>
-      <a href="#">Perfil</a>
+      <a href="index.php">Inicio</a>
+      <a href="consultas.php">Consultas</a>
+      <a href="estudios.php">Estudios</a>
+      <a href="vacunacion.php">Vacunación</a>
+      <a href="recordatoriosVacunacion.php">Recordatorios</a>
+      <a href="perfil.php">Perfil</a>
     </nav>
   </header>
 
