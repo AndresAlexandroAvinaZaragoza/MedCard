@@ -19,7 +19,7 @@ body {
   align-items: center;
   padding: 1.2rem 50px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  position: fixed;
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
@@ -120,6 +120,17 @@ body {
   .menu-btn {
     display: block; /* mostrar botón ☰ */
   }
+
+  /* En móvil, la navbar sí es fija */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .sidebar {
+    display: block;
+  }
 }
 /* ===== Hero ===== */
 .hero {
@@ -216,7 +227,11 @@ body {
 .acciones h2{
   font-size: 2rem;
 }
-
+@media (max-width: 768px) {
+  .acciones h2{
+    text-align: center;
+  }
+}
 .acciones-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
