@@ -73,10 +73,10 @@ body {
 /* ===== Sidebar (solo móvil) ===== */
 .sidebar {
   position: absolute;
-  top: 70px;
+  top: 90px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - -460px);
   background-color: #f4f7f9;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
   padding-top: 20px;
