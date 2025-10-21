@@ -1,7 +1,10 @@
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #333;
 }
@@ -14,6 +17,11 @@ body {
     align-items: center;
     padding: 1.3rem 60px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+     position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -33,20 +41,95 @@ body {
     font-weight: 700;
 }
 
-.menu{
-  font-size: large;
+/* Menú de enlaces en PC */
+.nav-links {
+  display: flex;
+  gap: 25px;
 }
 
-.navbar nav a {
-    margin-left: 25px;
-    text-decoration: none;
-    color: #5aabc6;
-    font-weight: 500;
-    transition: 0.3s;
+.nav-links a {
+  text-decoration: none;
+  color: #5aabc6;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-.navbar nav a:hover {
-    color: #0e5d72;
+.nav-links a:hover {
+  color: #0082a8;
+}
+
+/* Botón menú hamburguesa (☰) */
+.menu-btn {
+  display: none;
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #2691b2;
+  cursor: pointer;
+}
+
+/* ===== Sidebar (solo móvil) ===== */
+.sidebar {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - -460px);
+  background-color: #f4f7f9;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+
+.menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #2691b2;
+  font-weight: 500;
+  padding: 10px 20px;
+  display: block;
+  transition: background 0.3s;
+}
+
+.menu a:hover {
+  background-color: #e0f4ff;
+}
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* ocultar menú superior */
+  }
+
+  .menu-btn {
+    display: block; /* mostrar botón ☰ */
+  }
+
+  /* En móvil, la navbar sí es fija */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .sidebar {
+    display: block;
+  }
 }
 
 /* Encabezado azul */
@@ -57,9 +140,24 @@ body {
     padding: 45px 150px;
 }
 
+@media (max-width: 768px) {
+    .hero {
+        text-align: center;
+        padding: 140px 150px 40px;
+    }
+  
+}
+
 .hero h2 {
     font-size: 3rem;
     margin-bottom: 10px;
+    font-weight: 700;
+}
+@media (max-width: 768px) {
+    .hero h2 {
+        text-align: center;
+    }
+  
 }
 
 .hero p {
