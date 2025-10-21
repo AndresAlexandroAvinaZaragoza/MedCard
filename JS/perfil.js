@@ -2,12 +2,12 @@
 // Datos simulados iniciales
 // =============================
 const datosIniciales = {
-  nombre: "Juan Pérez",
-  email: "juan.perez@email.com",
-  fechaNacimiento: "1990-05-15",
-  telefono: "+123456789",
-  tipoSangre: "O+",
-  alergias: "Ninguna"
+  nombre: "",
+  email: "",
+  fechaNacimiento: "",
+  telefono: "",
+  tipoSangre: "",
+  alergias: ""
 };
 
 // =============================

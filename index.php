@@ -15,12 +15,12 @@
     </div>
     <nav>
       <ul class="menu">
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Consultas</a></li>
-        <li><a href="#">Estudios</a></li>
-        <li><a href="#">Vacunación</a></li>
-        <li><a href="#">Recordatorios</a></li>
-        <li><a href="#">Perfil</a></li>
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="consultas.php">Consultas</a></li>
+        <li><a href="estudios.php">Estudios</a></li>
+        <li><a href="vacunacion.php">Vacunación</a></li>
+        <li><a href="recordatoriosVacunacion.php">Recordatorios</a></li>
+        <li><a href="perfil.php">Perfil</a></li>
       </ul>
     </nav>
   </header>
