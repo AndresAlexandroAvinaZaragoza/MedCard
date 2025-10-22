@@ -5,12 +5,9 @@
   font-family: "Poppins", sans-serif;
 }
 
-
-
 body {
     background-color: #f8f9fa;
-    color: #333;
-    
+    color: #333;  
 }
 
 /* Barra de navegación */
@@ -136,7 +133,7 @@ body {
   }
 }
 
-/* Encabezado HERO */
+/* -----------------Encabezado HERO------------------- */
 .hero {
     background-color: #1997b9;
     color: white;

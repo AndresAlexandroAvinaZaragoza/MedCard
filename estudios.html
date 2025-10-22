@@ -8,12 +8,20 @@
   <link href="fonts/fuente1.css" rel="Fontes" />
 </head>
 <body>
+
   <header class="navbar">
     <div class="logo">
       <img src="img/logo 1.avif" alt="Logo" class="logo-img">
       <span>Salud y Cuidados</span>
     </div>
-    <nav class="menu">
+
+
+    <!-- Botón hamburguesa (solo visible en móvil) -->
+    <button class="menu-btn" id="menu-btn">☰</button>
+
+
+    <!-- Menú de navegación normal (visible en PC) -->
+    <nav class="nav-links">
       <a href="index.html">Inicio</a>
       <a href="consultas.html">Consultas</a>
       <a href="estudios.html">Estudios</a>
@@ -23,6 +31,33 @@
     </nav>
   </header>
 
+  <!-- Sidebar (solo visible en móvil cuando se abre) -->
+  <aside class="sidebar" id="sidebar">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="consultas.html">Consultas</a></li>
+      <li><a href="estudios.html">Estudios</a></li>
+      <li><a href="vacunacion.html">Vacunación</a></li>
+      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
+      <li><a href="perfil.html">Perfil</a></li>
+    </ul>
+  </aside>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    // Cierra el menú al hacer clic en un enlace (en móvil)
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => sidebar.classList.remove("active"));
+    });
+  </script>
+
+
   <section class="hero">
     <h1>Estudios y Resultados Médicos</h1>
     <p>Gestiona y revisa todos tus documentos médicos, resultados de laboratorio y estudios en un solo lugar seguro</p>
@@ -31,11 +66,12 @@
   <main class="content">
     <div class="content-header">
       <h2>Mis Estudios</h2>
-      <button class="btn-upload">
-        <i class="icon">📤</i>   Subir Nuevo Estudio
-      </button>
+      <button class="btn-upload"><i class="icon">📤</i>   Subir Nuevo Estudio</button>
     </div>
     <p class="subtext">Organiza y accede a tus documentos médicos cuando los necesites</p>
+    
+    <!--Boton Para Movil-->
+    <button class="btn-movil"><i class="icon">📤</i>   Subir Nuevo Estudio</button>
 
     <div class="filter-box">
       <label for="tipoEstudio">Filtrar por Tipo de Estudio</label>
@@ -49,7 +85,10 @@
     </div>
   </main>
 
-  
+  <footer>
+    <p>© 2025 Salud y Cuidados — Proyecto en desarrollo</p>
+  </footer>
+
   <!-- MODAL Para subir Estudios-->
   <div id="modalEstudio" class="modal">
     <div class="modal-contenido">
@@ -82,6 +121,7 @@
       </form>
     </div>
   </div>
+
 
   <!-- SCRIPT -->
   <script>
