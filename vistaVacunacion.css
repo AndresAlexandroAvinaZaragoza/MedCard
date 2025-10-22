@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -12,15 +12,17 @@ body {
 
 /* ---------- NAVBAR ---------- */
 .navbar {
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  padding: 1.8rem 60px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  position: sticky;
+  padding: 1.3rem 60px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  position: relative;
+  width: 100%;
   top: 0;
-  z-index: 10;
+  left: 0;
+  z-index: 1000;
 }
 
 .logo {
@@ -37,8 +39,59 @@ body {
   margin-right: 8px;
 }
 
+
+/* Menú de enlaces en PC */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #5aabc6;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #0082a8;
+}
+
+/* Botón menú hamburguesa (☰) */
+.menu-btn {
+  display: none;
+  font-size: 40px;
+  background: none;
+  border: none;
+  color: #2691b2;
+  cursor: pointer;
+}
+
+/* ===== Sidebar (solo móvil) ===== */
+.sidebar {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - -460px);
+  background-color: #f4f7f9;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
 .menu{
-  font-size: large;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .menu a {
@@ -47,7 +100,32 @@ body {
   color: #2698bb;
   font-weight: 500;
   transition: color 0.2s ease;
+  font-size: large;
 }
+
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* ocultar menú superior */
+  }
+
+  .menu-btn {
+    display: block; /* mostrar botón ☰ */
+  }
+
+  /* En móvil, la navbar sí es fija */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  .sidebar {
+    display: block;
+  }
+}
+
 
 .navbar nav a:hover {
     color: #0e5d72;
@@ -59,6 +137,13 @@ body {
   color: #1f2d3d;
   text-align: left;
   padding: 60px 150px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 150px 20px 50px;
+    text-align: center;
+  }
 }
 
 .hero h1 {
@@ -88,6 +173,18 @@ body {
   flex-wrap: wrap;
 }
 
+@media (max-width: 600px) {
+
+  .content {
+    margin: 0;
+  }
+  .content-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+}
 /* ---------- FILTER BOX ---------- */
 .filter-box {
   display: flex;
@@ -129,6 +226,13 @@ body {
   color: white;
   font-size: 1rem;
 }
+
+@media (max-width: 600px) {
+  .buttons {
+    justify-content: center;
+  }
+}
+
 
 .btn.blue {
   background-color: #1c98b4;

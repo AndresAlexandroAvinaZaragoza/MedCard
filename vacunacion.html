@@ -13,7 +13,13 @@
       <img src="img/logo 1.avif" alt="Logo" class="logo-img">
       <span>Salud y Cuidados</span>
     </div>
-    <nav class="menu">
+
+    <!-- Botón hamburguesa (solo visible en móvil) -->
+    <button class="menu-btn" id="menu-btn">☰</button>
+
+
+    <!-- Menú de navegación normal (visible en PC) -->
+    <nav class="nav-links">
       <a href="index.html">Inicio</a>
       <a href="consultas.html">Consultas</a>
       <a href="estudios.html">Estudios</a>
@@ -22,6 +28,32 @@
       <a href="perfil.html">Perfil</a>
     </nav>
   </header>
+
+  <!-- Sidebar (solo visible en móvil cuando se abre) -->
+  <aside class="sidebar" id="sidebar">
+    <ul class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="consultas.html">Consultas</a></li>
+      <li><a href="estudios.html">Estudios</a></li>
+      <li><a href="vacunacion.html">Vacunación</a></li>
+      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
+      <li><a href="perfil.html">Perfil</a></li>
+    </ul>
+  </aside>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active");
+    });
+
+    // Cierra el menú al hacer clic en un enlace (en móvil)
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => sidebar.classList.remove("active"));
+    });
+  </script>
 
   <section class="hero">
     <h1>Control de Vacunación</h1>
