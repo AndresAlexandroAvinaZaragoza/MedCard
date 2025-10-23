@@ -1,201 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Salud y Cuidados</title>
-  <link rel="stylesheet" href="vistaIndex.css" />
-  <link href="fonts/fuente1.css" rel="Fontes" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de - MedCard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="vistaIndex.css">
 </head>
+
 <body>
-  <!-- Navbar superior -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="img/logo 1.avif" alt="logo" />
-      <h1>Salud y Cuidados</h1>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <span class="material-symbols-outlined">health_and_safety</span>
+        <h1>MedCard</h1>
+      </div>
+      <a href="inicioSesion.html" class="btn-outline">Inicio de Sesión</a>
     </div>
-
-    <!-- Botón hamburguesa (solo visible en móvil) -->
-    <button class="menu-btn" id="menu-btn">☰</button>
-
-    <!-- Menú de navegación normal (visible en PC) -->
-    <nav class="nav-links">
-      <a href="index.html">Inicio</a>
-      <a href="consultas.html">Consultas</a>
-      <a href="estudios.html">Estudios</a>
-      <a href="vacunacion.html">Vacunación</a>
-      <a href="recordatoriosVacunacion.html">Recordatorios</a>
-      <a href="perfil.html">Perfil</a>
-    </nav>
   </header>
 
-  <!-- Sidebar (solo visible en móvil cuando se abre) -->
-  <aside class="sidebar" id="sidebar">
-    <ul class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="consultas.html">Consultas</a></li>
-      <li><a href="estudios.html">Estudios</a></li>
-      <li><a href="vacunacion.html">Vacunación</a></li>
-      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
-      <li><a href="perfil.html">Perfil</a></li>
-    </ul>
-  </aside>
-  
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const sidebar = document.getElementById("sidebar");
-
-    menuBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-    });
-
-    // Cierra el menú al hacer clic en un enlace (en móvil)
-    document.querySelectorAll(".sidebar a").forEach(link => {
-      link.addEventListener("click", () => sidebar.classList.remove("active"));
-    });
-  </script>
-
-  <section class="hero">
-    <h2>Bienvenido a tu Registro de Salud Personal</h2>
-    <p>Gestiona tus consultas médicas, estudios y vacunación de manera organizada y segura</p>
-    <div class="hero-buttons">
-      <button class="btn btn-primary">Registrar Consulta</button>
-      <button class="btn btn-secondary">Subir Estudio</button>
-    </div>
-  </section>
-
-  <main class="content">
-    <section class="section">
-      <div class="section-header">
-        <h3>Consultas Médicas Recientes</h3>
-        <button class="btn btn-small">+ Nueva Consulta</button>
+  <main>
+    <!-- Sección principal -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h2>Tu historial médico, siempre contigo.</h2>
+        <p>MedCard es la forma segura y sencilla de gestionar tus estudios médicos y consultas en un solo lugar.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-header">
-        <h3>Estudios y Resultados Recientes</h3>
-        <button class="btn btn-small">+ Subir Estudio</button>
+    <!-- Sección: Qué es MedCard -->
+    <section class="info">
+      <div class="container">
+        <div class="info-text">
+          <h3>¿Qué es MedCard?</h3>
+          <p>Una aplicación diseñada para darte control total sobre tu información de salud. 
+            Sube tus resultados de laboratorio, radiografías, y registra cada consulta médica de forma organizada y accesible.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="icon">
+              <span class="material-symbols-outlined">upload_file</span>
+            </div>
+            <h4>Sube tus estudios</h4>
+            <p>Digitaliza y almacena todos tus estudios médicos. Accede a ellos desde cualquier lugar y en cualquier momento.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <span class="material-symbols-outlined">medical_services</span>
+            </div>
+            <h4>Gestiona consultas</h4>
+            <p>Lleva un registro detallado de tus visitas al médico, diagnósticos y tratamientos recomendados.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <h4>Seguro y Privado</h4>
+            <p>Tu información está protegida con los más altos estándares de seguridad para garantizar tu privacidad.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section acciones">
-      <h2>Acciones Rápidas</h2>
-      <div class="acciones-grid">
-        <div class="card">Ver Todas las Consultas</div>
-        <div class="card">Gestionar Estudios</div>
-        <div class="card">Registro de Vacunación</div>
-        <div class="card">Mis Recordatorios</div>
+    <!-- Sección final -->
+    <section class="cta">
+      <div class="container cta-content">
+        <div class="cta-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEn4k1jIc6RPPb5S1h4SvRcicKAjagOuN-ANtVtcYwc6ZurRq_cDoNeFUNTFMd4maFaoL_04OjF--Sc072Iplu74gqy1pcIwQQ8rzvObB35X0xW9ERQhmNQq-C-80je_i19bjSASEbqoD_ia_7naXvtEuRvkYKUfBtUL9rEVd4ZffifIvrCQz_ILp-Kmn7E07NlWr_XHuwrnua6xN5xrr3MILiosvIH7Q-hFBcH2FIfiRCfzuZiJQIJEwQK4PsGeaPBi_9aVFchw" 
+          alt="Vista previa de la app MedCard">
+        </div>
+        <div class="cta-text">
+          <h3>Toma el control de tu salud hoy</h3>
+          <p>Únete a miles de personas que ya organizan su vida médica con MedCard. 
+            Regístrate y empieza a construir tu historial de salud digital.
+          </p>
+          <a href="crearCuenta.html" class="btn-primary">Crear Cuenta</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Salud y Cuidados — Proyecto en desarrollo</p>
+    <div class="container footer-content">
+      <p>© 2024 MedCard. Todos los derechos reservados.</p>
+    </div>
   </footer>
-
-  <!-- MODAL: Agregar Nueva Consulta -->
-  <div id="modalConsulta" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar cerrar-consulta">&times;</span>
-      <h2>Agregar Nueva Consulta</h2>
-
-      <form>
-        <label>Fecha de Consulta</label>
-        <input type="date" required>
-
-        <label>Nombre del Médico</label>
-        <input type="text" placeholder="Dr. Juan Pérez" required>
-
-        <label>Especialidad</label>
-        <select required>
-          <option value="">Seleccionar especialidad</option>
-          <option>Medicina General</option>
-          <option>Pediatría</option>
-          <option>Cardiología</option>
-          <option>Dermatología</option>
-        </select>
-
-        <label>Diagnóstico</label>
-        <input type="text" placeholder="Descripción del diagnóstico">
-
-        <label>Tratamiento</label>
-        <input type="text" placeholder="Descripción del tratamiento">
-
-        <label>Notas Adicionales</label>
-        <textarea placeholder="Notas opcionales"></textarea>
-
-        <button type="submit" class="btn-guardar">Guardar Consulta</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL: Subir Estudio -->
-  <div id="modalEstudio" class="modal">
-    <div class="modal-contenido">
-      <span class="cerrar cerrar-estudio">&times;</span>
-      <h2>Subir Nuevo Estudio</h2>
-
-      <form>
-        <label>Nombre del Estudio</label>
-        <input type="text" placeholder="Ej. Hemograma completo" required>
-
-        <label>Tipo de Estudio</label>
-        <select required>
-          <option value="">Seleccionar tipo</option>
-          <option>Análisis de sangre</option>
-          <option>Rayos X</option>
-          <option>Resonancia magnética</option>
-          <option>Ultrasonido</option>
-        </select>
-
-        <label>Fecha del Estudio</label>
-        <input type="date" required>
-
-        <label>Archivo (PDF o Imagen)</label>
-        <input type="file" accept=".pdf, .jpg, .png, .jpeg" required>
-
-        <label>Notas Adicionales</label>
-        <textarea placeholder="Información relevante sobre el estudio (opcional)"></textarea>
-
-        <button type="submit" class="btn-guardar">Guardar Estudio</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- SCRIPT PRINCIPAL -->
-  <script>
-    // --- MODAL CONSULTA ---
-    const modalConsulta = document.getElementById("modalConsulta");
-    const btnAbrirConsulta = document.querySelector(".btn-primary");
-    const btnCerrarConsulta = document.querySelector(".cerrar-consulta");
-
-    btnAbrirConsulta.onclick = () => {
-      modalConsulta.style.display = "flex";
-    };
-
-    btnCerrarConsulta.onclick = () => {
-      modalConsulta.style.display = "none";
-    };
-
-    // --- MODAL ESTUDIO ---
-    const modalEstudio = document.getElementById("modalEstudio");
-    const btnAbrirEstudio = document.querySelector(".btn-secondary");
-    const btnCerrarEstudio = document.querySelector(".cerrar-estudio");
-
-    btnAbrirEstudio.onclick = () => {
-      modalEstudio.style.display = "flex";
-    };
-
-    btnCerrarEstudio.onclick = () => {
-      modalEstudio.style.display = "none";
-    };
-
-    // --- CERRAR AL HACER CLICK FUERA ---
-    window.onclick = (event) => {
-      if (event.target === modalConsulta) modalConsulta.style.display = "none";
-      if (event.target === modalEstudio) modalEstudio.style.display = "none";
-    };
-  </script>
 </body>
 </html>
