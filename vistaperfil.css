@@ -95,7 +95,7 @@ body {
   gap: 15px;
 }
 
-nav a {
+.menu a {
   margin-left: 1.5rem;
   text-decoration: none;
   color: #5aabc6;
