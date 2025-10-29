@@ -105,7 +105,7 @@
           </label>
         </div>
 
-        <button type="submit" class="btn-primary">Crear Cuenta</button>
+        <button type="submit" class="btn-primary" name="btnCrearCuenta">Crear Cuenta</button>
       </form>
     </div>
   </main>
@@ -113,5 +113,30 @@
   <footer class="footer">
     <p>© 2024 MedCard. Todos los derechos reservados.</p>
   </footer>
+
+  <?php
+    if(isset($_POST['btnCrearCuenta'])) {
+      $nombre = $_POST['nombre'];
+      $apellidoPaterno = $_POST['apellido-paterno'];
+      $apellidoMaterno = $_POST['apellido-materno'];
+      $telefono = $_POST['telefono'];
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+      $fechaNacimiento = $_POST['fecha-nacimiento'];
+      $tipoSangre = $_POST['tipo-sangre'];
+      $alergias = $_POST['alergias'];
+      $enfermedadesCronicas = $_POST['enfermedades-cronicas'];
+
+      echo "<script>alert('Cuenta creada exitosamente.');</script>";
+    }
+  ?>
+
+
+
+
+
+
+
+
 </body>
 </html>
