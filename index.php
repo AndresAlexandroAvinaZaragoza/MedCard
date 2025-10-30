@@ -14,9 +14,9 @@
     <div class="container header-content">
       <div class="logo">
         <span class="material-symbols-outlined">health_and_safety</span>
-        <h1>MedCard</h1>
+        <h1 href="index.php">MedCard</h1>
       </div>
-      <a href="inicioSesion.html" class="btn-outline">Inicio de Sesión</a>
+      <a href="inicioSesion.php" class="btn-outline">Inicio de Sesión</a>
     </div>
   </header>
 
@@ -79,7 +79,7 @@
           <p>Únete a miles de personas que ya organizan su vida médica con MedCard. 
             Regístrate y empieza a construir tu historial de salud digital.
           </p>
-          <a href="crearCuenta.html" class="btn-primary">Crear Cuenta</a>
+          <a href="crearCuenta.php" class="btn-primary">Crear Cuenta</a>
         </div>
       </div>
     </section>

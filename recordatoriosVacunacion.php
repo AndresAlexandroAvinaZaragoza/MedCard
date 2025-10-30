@@ -21,24 +21,24 @@
 
     <!-- Menú de navegación normal (visible en PC) -->
     <nav class="nav-links">
-      <a href="sesionIniciada.html">Inicio</a>
-      <a href="consultas.html">Consultas</a>
-      <a href="estudios.html">Estudios</a>
-      <a href="vacunacion.html">Vacunación</a>
-      <a href="recordatoriosVacunacion.html">Recordatorios</a>
-      <a href="perfil.html">Perfil</a>
+      <a href="sesionIniciada.php">Inicio</a>
+      <a href="consultas.php">Consultas</a>
+      <a href="estudios.php">Estudios</a>
+      <a href="vacunacion.php">Vacunación</a>
+      <a href="recordatoriosVacunacion.php">Recordatorios</a>
+      <a href="perfil.php">Perfil</a>
     </nav>
   </header>
 
   <!-- Sidebar (solo visible en móvil cuando se abre) -->
   <aside class="sidebar" id="sidebar">
     <ul class="menu">
-      <li><a href="sesionIniciada.html">Inicio</a></li>
-      <li><a href="consultas.html">Consultas</a></li>
-      <li><a href="estudios.html">Estudios</a></li>
-      <li><a href="vacunacion.html">Vacunación</a></li>
-      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
-      <li><a href="perfil.html">Perfil</a></li>
+      <li><a href="sesionIniciada.php">Inicio</a></li>
+      <li><a href="consultas.php">Consultas</a></li>
+      <li><a href="estudios.php">Estudios</a></li>
+      <li><a href="vacunacion.php">Vacunación</a></li>
+      <li><a href="recordatoriosVacunacion.php">Recordatorios</a></li>
+      <li><a href="perfil.php">Perfil</a></li>
     </ul>
   </aside>
 

@@ -20,24 +20,24 @@
 
     <!-- Menú de navegación normal (visible en PC) -->
     <nav class="nav-links">
-      <a href="sesionIniciada.html">Inicio</a>
-      <a href="consultas.html">Consultas</a>
-      <a href="estudios.html">Estudios</a>
-      <a href="vacunacion.html">Vacunación</a>
-      <a href="recordatoriosVacunacion.html">Recordatorios</a>
-      <a href="perfil.html">Perfil</a>
+      <a href="sesionIniciada.php">Inicio</a>
+      <a href="consultas.php">Consultas</a>
+      <a href="estudios.php">Estudios</a>
+      <a href="vacunacion.php">Vacunación</a>
+      <a href="recordatoriosVacunacion.php">Recordatorios</a>
+      <a href="perfil.php">Perfil</a>
     </nav>
   </header>
 
   <!-- Sidebar (solo visible en móvil cuando se abre) -->
   <aside class="sidebar" id="sidebar">
     <ul class="menu">
-      <li><a href="sesionIniciada.html">Inicio</a></li>
-      <li><a href="consultas.html">Consultas</a></li>
-      <li><a href="estudios.html">Estudios</a></li>
-      <li><a href="vacunacion.html">Vacunación</a></li>
-      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
-      <li><a href="perfil.html">Perfil</a></li>
+      <li><a href="sesionIniciada.php">Inicio</a></li>
+      <li><a href="consultas.php">Consultas</a></li>
+      <li><a href="estudios.php">Estudios</a></li>
+      <li><a href="vacunacion.php">Vacunación</a></li>
+      <li><a href="recordatoriosVacunacion.php">Recordatorios</a></li>
+      <li><a href="perfil.php">Perfil</a></li>
     </ul>
   </aside>
 
@@ -102,21 +102,49 @@
         </datalist>
 
         <label>Fecha de administración</label>
-        <input type="date" required>
+        <input type="date" id="fehca-vacuna-administrada" name="fehca-vacuna-administrada"  required>
 
         <label>Número de lote</label>
-        <input type="text" placeholder="LOT-2025-A123">
+        <input type="text" id="lote-vacuna" name="lote-vacuna" placeholder="LOT-2025-A123">
 
         <label>Proveedor de salud</label>
-        <input type="text" placeholder="Hospital, Farmacia, clínica">
+        <input type="text" id="provedor" name="provedor" placeholder="Hospital, Farmacia, clínica">
 
         <label>Notas Adicionales</label>
-        <textarea placeholder="Notas opcionales"></textarea>
+        <textarea id="notas-adicioanales" name="notas-adicionales" placeholder="Notas opcionales"></textarea>
 
-        <button type="submit" class="btn-guardar">Guardar Vacuna</button>
+        <button type="submit" class="btn-guardar" name="btnGuardarVacuna">Guardar Vacuna</button>
       </form>
     </div>
   </div>
+
+    <?php
+    include 'conectar.php';
+    if(isset($_POST['btnGuadarVacuna'])){
+        $nombreVacuna = $_POST['vacuna'];
+        $fechaAdministracion = $_POST['fehca-vacuna-administrada'];
+        $numeroLote = $_POST['lote-vacuna'];
+        $proveedorSalud = $_POST['provedor'];
+        $notasAdicionales = $_POST['notas-adicioanales'];
+
+        try {
+            $sql = "INSERT INTO vacunas (nombre_vacuna, fecha_administracion, numero_lote, proveedor_salud, notas_adicionales) 
+                    VALUES (:nombreVacuna, :fechaAdministracion, :numeroLote, :proveedorSalud, :notasAdicionales)";
+            $stmt = $conn->prepare($sql);
+            $stmt->excute([
+                ':nombreVacuna' => $nombreVacuna,
+                ':fechaAdministracion' => $fechaAdministracion,
+                ':numeroLote' => $numeroLote,
+                ':proveedorSalud' => $proveedorSalud,
+                ':notasAdicionales' => $notasAdicionales
+            ]);
+            echo "<script>alert('Vacuna registrada exitosamente.');</script>";
+        } catch (PDOException $e) {
+            echo "<script>alert('Error al registrar la vacuna: " . $e->getMessage() . "');</script>";
+          }
+      }
+    ?>
+
 
   <!-- Modal: Agregar Nuevo Recordatorio -->
   <div id="modalRecordatorio" class="modal">
@@ -136,15 +164,41 @@
         </datalist>
 
         <label>Fecha del recordatorio</label>
-        <input type="date" required>
+        <input type="date" id="fecha-recordatorio" name="fecha-recordatorio" required>
 
         <label>Notas</label>
-        <textarea placeholder="Detalles adicionales del recordatorio"></textarea>
+        <textarea id="notas-adicionales" name="notas-adicionales" placeholder="Detalles adicionales del recordatorio"></textarea>
 
-        <button type="submit" class="btn-guardar">Guardar Recordatorio</button>
+        <button type="submit" class="btn-guardar" name="btnGuardarRecordatorio" >Guardar Recordatorio</button>
       </form>
     </div>
   </div>
+
+  <?php
+    if(isset($_POST['btnGuardarRecordatorio'])){
+        $nombreVacuna = $_POST['recordatorio'];
+        $fechaRecordatorio = $_POST['fecha-recordatorio'];
+        $notas = $_POST['notas-adicionales'];
+
+        try {
+            $sql = "INSERT INTO recordatorios (nombre_vacuna, fecha_recordatorio, notas) 
+                    VALUES (:nombreVacuna, :fechaRecordatorio, :notas)";
+            $stmt = $conn->prepare($sql);
+            $stmt->excute([
+                ':nombreVacuna' => $nombreVacuna,
+                ':fechaRecordatorio' => $fechaRecordatorio,
+                ':notas' => $notas
+            ]);
+            echo "<script>alert('Recordatorio creado exitosamente.');</script>";
+        } catch (PDOException $e) {
+            echo "<script>alert('Error al crear el recordatorio: " . $e->getMessage() . "');</script>";
+          }
+      }
+    ?>
+
+
+
+
 
   <!-- Script Agregar Vacuna -->
   <script>

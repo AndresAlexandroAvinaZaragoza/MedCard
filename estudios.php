@@ -22,24 +22,24 @@
 
     <!-- Menú de navegación normal (visible en PC) -->
     <nav class="nav-links">
-      <a href="sesionIniciada.html">Inicio</a>
-      <a href="consultas.html">Consultas</a>
-      <a href="estudios.html">Estudios</a>
-      <a href="vacunacion.html">Vacunación</a>
-      <a href="recordatoriosVacunacion.html">Recordatorios</a>
-      <a href="perfil.html">Perfil</a>
+      <a href="sesionIniciada.php">Inicio</a>
+      <a href="consultas.php">Consultas</a>
+      <a href="estudios.php">Estudios</a>
+      <a href="vacunacion.php">Vacunación</a>
+      <a href="recordatoriosVacunacion.php">Recordatorios</a>
+      <a href="perfil.php">Perfil</a>
     </nav>
   </header>
 
   <!-- Sidebar (solo visible en móvil cuando se abre) -->
   <aside class="sidebar" id="sidebar">
     <ul class="menu">
-      <li><a href="sesionIniciada.html">Inicio</a></li>
-      <li><a href="consultas.html">Consultas</a></li>
-      <li><a href="estudios.html">Estudios</a></li>
-      <li><a href="vacunacion.html">Vacunación</a></li>
-      <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
-      <li><a href="perfil.html">Perfil</a></li>
+      <li><a href="sesionIniciada.php">Inicio</a></li>
+      <li><a href="consultas.php">Consultas</a></li>
+      <li><a href="estudios.php">Estudios</a></li>
+      <li><a href="vacunacion.php">Vacunación</a></li>
+      <li><a href="recordatoriosVacunacion.php">Recordatorios</a></li>
+      <li><a href="perfil.php">Perfil</a></li>
     </ul>
   </aside>
 
@@ -97,10 +97,10 @@
 
       <form>
         <label>Nombre del Estudio</label>
-        <input type="text" placeholder="Ej. Hemograma completo" required>
+        <input type="text" id="nombre-estudio" name="nombre-estudio" placeholder="Ej. Hemograma completo" required>
 
         <label>Tipo de Estudio</label>
-        <select required>
+        <select id="tipo-estudio" name="tipo-estudio" required>
           <option value="">Seleccionar tipo</option>
           <option>Análisis de sangre</option>
           <option>Rayos X</option>
@@ -109,19 +109,56 @@
         </select>
 
         <label>Fecha del Estudio</label>
-        <input type="date" required>
+        <input type="date" id="fecha-estudio" name="fecha-estudio" required>
 
         <label>Archivo (PDF o Imagen)</label>
-        <input type="file" accept=".pdf, .jpg, .png, .jpeg" required>
+        <input type="file" accept=".pdf, .jpg, .png, .jpeg" id="archivo" name="archivo" required>
 
         <label>Notas Adicionales</label>
-        <textarea placeholder="Información relevante sobre el estudio (opcional)"></textarea>
+        <textarea id="notas-adicionales" name="notas-adicionales"  placeholder="Información relevante sobre el estudio (opcional)"></textarea>
 
-        <button type="submit" class="btn-guardar">Guardar Estudio</button>
+        <button type="submit" class="btn-guardar" name="btnEstudio">Guardar Estudio</button>
       </form>
     </div>
   </div>
 
+  
+  <?php
+    include 'conectar.php';
+    if(isset($_POST['btnEstudio'])){
+        $nombre_estudio = $_POST['nombre-estudio'];
+        $tipo_estudio = $_POST['tipo-estudio'];
+        $fecha_estudio = $_POST['fecha-estudio'];
+
+        //NOMBRE Y RUTA DEL ARCHIVO SUBIDO
+        $nombre_archivo = $_FILES['archivo']['name'];
+        $ruta_archivo = $_FILES['archivo']['tmp_name'];
+        
+        $destino = "../archivo/" . $nombre_archivo;
+        $base_datos = "archivo/" . $nombre_archivo;
+        move_uploaded_file($ruta_archivo, $destino);
+
+        $notas_adicionales = $_POST['notas-adicionales'];
+
+        try {
+            $sql = "INSERT INTO estudios (nombre_estudio, tipo_estudio, 
+                                fecha_estudio, notas_adicionales, direccion_archivo) 
+                    VALUES (:nombre_estudio, :tipo_estudio, 
+                              :fecha_estudio, :notas_adicionales, :base_datos)";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([
+                ':nombre_estudio' => $nombre_estudio,
+                ':tipo_estudio' => $tipo_estudio,
+                ':fecha_estudio' => $fecha_estudio,
+                ':notas_adicionales' => $notas_adicionales,
+                ':base_datos' => $base_datos
+            ]);
+            echo "<script>alert('Estudio subido exitosamente.');</script>";
+        } catch (PDOException $e) {
+            echo "ERROR: " . $e->getMessage();
+        }
+    }
+  ?>
 
   <!-- SCRIPT -->
   <script>

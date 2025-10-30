@@ -16,7 +16,7 @@
         <span class="material-symbols-outlined icon">health_and_safety</span>
         <h1>MedCard</h1>
       </a>
-      <a href="#" class="btn-outline">Inicio de Sesión</a>
+      <a href="inicioSesion.php" class="btn-outline">Inicio de Sesión</a>
     </div>
   </header>
 
@@ -115,6 +115,9 @@
   </footer>
 
   <?php
+
+  include 'conectar.php';
+
     if(isset($_POST['btnCrearCuenta'])) {
       $nombre = $_POST['nombre'];
       $apellidoPaterno = $_POST['apellido-paterno'];
@@ -127,7 +130,32 @@
       $alergias = $_POST['alergias'];
       $enfermedadesCronicas = $_POST['enfermedades-cronicas'];
 
-      echo "<script>alert('Cuenta creada exitosamente.');</script>";
+      try {
+              // Consulta SQL correcta con nombres de columnas
+              $sql = "INSERT INTO usuario 
+                      (nombre, apellido_paterno, apellido_materno, telefono, email, password, fecha_nacimiento, tipo_sangre, alergias, enfermedades_cronicas)
+                      VALUES 
+                      (:nombre, :apellido_paterno, :apellido_materno, :telefono, :email, :password, :fecha_nacimiento, :tipo_sangre, :alergias, :enfermedades_cronicas)";
+
+              $stmt = $consulta->prepare($sql);
+
+              $stmt->execute([
+                  ':nombre' => $nombre,
+                  ':apellido_paterno' => $apellidoPaterno,
+                  ':apellido_materno' => $apellidoMaterno,
+                  ':telefono' => $telefono,
+                  ':email' => $email,
+                  ':password' => $password,
+                  ':fecha_nacimiento' => $fechaNacimiento,
+                  ':tipo_sangre' => $tipoSangre,
+                  ':alergias' => $alergias,
+                  ':enfermedades_cronicas' => $enfermedadesCronicas
+              ]);
+
+              echo "<script>alert('Cuenta creada exitosamente.');</script>";
+      } catch (PDOException $e) {
+              echo "Error al crear la cuenta: " . $e->getMessage();
+          }
     }
   ?>
 

@@ -38,14 +38,53 @@
           <div class="options">
             <a href="#" class="forgot">¿Olvidé mi contraseña?</a>
           </div>
-          <a href="sesionIniciada.html" class="btn-primary">Iniciar Sesión</a>
+          <button type="submit" class="btn-primary" name="btnIniciarSesion">Iniciar sesion</button>
         </form>
       </div>
 
       <div class="register-text">
-        <p>¿No tienes una cuenta? <a href="#">Crear cuenta</a></p>
+        <p>¿No tienes una cuenta? <a href="crearCuenta.php">Crear cuenta</a></p>
       </div>
     </div>
   </main>
+
+  <?php
+  // Incluimos el archivo de conexión
+  include 'conectar.php';
+
+  if (isset($_POST['btnIniciarSesion'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+
+      try {
+          // Consulta: buscar el usuario por email
+          $sql = "SELECT * FROM usuario WHERE email = :email";
+          $stmt = $consulta->prepare($sql);
+          $stmt->execute([':email' => $email]);
+          $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          if ($usuario) {
+              // Validar contraseña (puedes usar password_verify si la guardas cifrada)
+              if ($usuario['password'] === $password) {
+                  session_start();
+                  $_SESSION['id_usuario'] = $usuario['id_usuario'];
+                  $_SESSION['nombre'] = $usuario['nombre'];
+
+                  echo "<script>
+                    alert('Inicio de sesión exitoso. ¡Bienvenido, " . $usuario['nombre'] . "!');
+                    window.location.href = 'sesionIniciada.php';
+                  </script>";
+              } else {
+                  echo "<script>alert('Contraseña incorrecta.');</script>";
+              }
+          } else {
+              echo "<script>alert('No existe una cuenta con ese correo.');</script>";
+          }
+      } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+      }
+  }
+  ?>
+
 </body>
 </html>

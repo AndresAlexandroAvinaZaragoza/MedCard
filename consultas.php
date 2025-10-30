@@ -21,24 +21,24 @@
 
         <!-- Menú de navegación normal (visible en PC) -->
         <nav class="nav-links">
-            <a href="sesionIniciada.html">Inicio</a>
-            <a href="consultas.html">Consultas</a>
-            <a href="estudios.html">Estudios</a>
-            <a href="vacunacion.html">Vacunación</a>
-            <a href="recordatoriosVacunacion.html">Recordatorios</a>
-            <a href="perfil.html">Perfil</a>
+            <a href="sesionIniciada.php">Inicio</a>
+            <a href="consultas.php">Consultas</a>
+            <a href="estudios.php">Estudios</a>
+            <a href="vacunacion.php">Vacunación</a>
+            <a href="recordatoriosVacunacion.php">Recordatorios</a>
+            <a href="perfil.php">Perfil</a>
         </nav>
     </header>
 
     <!-- Sidebar (solo visible en móvil cuando se abre) -->
     <aside class="sidebar" id="sidebar">
         <ul class="menu">
-        <li><a href="sesionIniciada.html">Inicio</a></li>
-        <li><a href="consultas.html">Consultas</a></li>
-        <li><a href="estudios.html">Estudios</a></li>
-        <li><a href="vacunacion.html">Vacunación</a></li>
-        <li><a href="recordatoriosVacunacion.html">Recordatorios</a></li>
-        <li><a href="perfil.html">Perfil</a></li>
+        <li><a href="sesionIniciada.php">Inicio</a></li>
+        <li><a href="consultas.php">Consultas</a></li>
+        <li><a href="estudios.php">Estudios</a></li>
+        <li><a href="vacunacion.php">Vacunación</a></li>
+        <li><a href="recordatoriosVacunacion.php">Recordatorios</a></li>
+        <li><a href="perfil.php">Perfil</a></li>
         </ul>
     </aside>
 
@@ -97,13 +97,13 @@
 
             <form>
                 <label>Fecha de Consulta</label>
-                <input type="date" required>
+                <input type="date" id="fecha-consulta" name="fecha-consulta" required>
 
                 <label>Nombre del Médico</label>
-                <input type="text" placeholder="Dr. Juan Pérez" required>
+                <input type="text" id="nombre-medico" name="nombre-medico" placeholder="Dr. Juan Pérez" required>
 
                 <label>Especialidad</label>
-                <select required>
+                <select id="especialidad" name="especialidad" required>
                     <option value="">Seleccionar especialidad</option>
                     <option>Medicina General</option>
                     <option>Pediatría</option>
@@ -112,18 +112,50 @@
                 </select>
 
                 <label>Diagnóstico</label>
-                <input type="text" placeholder="Descripción del diagnóstico">
+                <input type="text" id="diagnostico" name="diagnostico" placeholder="Descripción del diagnóstico">
 
                 <label>Tratamiento</label>
-                <input type="text" placeholder="Descripción del tratamiento">
+                <input type="text" id="tratamiento" name="tratamiento" placeholder="Descripción del tratamiento">
 
                 <label>Notas Adicionales</label>
-                <textarea placeholder="Notas opcionales"></textarea>
+                <textarea id="notas-adicionales" name="notas-adicionales" placeholder="Notas opcionales"></textarea>
 
-                <button type="submit" class="btn-guardar">Guardar Consulta</button>
+                <button type="submit" class="btn-guardar" name="btnConsulta">Guardar Consulta</button>
             </form>
         </div>
     </div>
+
+
+    <?php
+        include 'conectar.php';
+        if(isset($_POST['btnConsulta'])){
+            $fecha_consulta = $_POST['fecha-consulta'];
+            $nombre_medico = $_POST['nombre-medico'];
+            $especialidad = $_POST['especialidad'];
+            $diagnostico = $_POST['diagnostico'];
+            $tratamiento = $_POST['tratamiento'];
+            $notas_adicionales = $_POST['notas-adicionales'];
+
+            try {
+                $sql = "INSERT INTO consultas (fecha_consulta, nombre_medico, especialidad, diagnostico, tratamiento, notas_adicionales) 
+                        VALUES (:fecha_consulta, :nombre_medico, :especialidad, :diagnostico, :tratamiento, :notas_adicionales)";
+                $stmt = $consulta->prepare($sql);
+                $stmt->execute([
+                    ':fecha_consulta' => $fecha_consulta,
+                    ':nombre_medico' => $nombre_medico,
+                    ':especialidad' => $especialidad,
+                    ':diagnostico' => $diagnostico,
+                    ':tratamiento' => $tratamiento,
+                    ':notas_adicionales' => $notas_adicionales
+                ]);
+                echo "<script>alert('Consulta registrada exitosamente.');</script>";
+            } catch (PDOException $e) {
+                echo "ERROR: " . $e->getMessage();
+            }
+        }
+    
+    ?>
+
 
     <!-- Script -->
     <script>
