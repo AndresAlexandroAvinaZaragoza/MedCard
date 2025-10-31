@@ -1,4 +1,9 @@
+/* vistaRecordatoriosVacunacion.css
+   Versión corregida y extendida: incluye navbar, hero, filtros,
+   plus: botones, modal, lista, edición inline, snooze y toast.
+*/
 
+/* ================ Reset & base ================ */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +14,13 @@
 body {
   background-color: #f7f9fb;
   color: #1f2937;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* si navbar se hace fija en móvil, dejamos espacio arriba para contenido */
+  padding-top: 0;
 }
 
-/* ---------- NAVBAR ---------- */
+/* ================ NAVBAR ================ */
 .navbar {
   background-color: #fff;
   display: flex;
@@ -25,7 +34,6 @@ body {
   left: 0;
   z-index: 1000;
 }
-
 
 .logo {
   display: flex;
@@ -41,15 +49,7 @@ body {
   margin-right: 8px;
 }
 
-.menu{
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Menú de enlaces en PC */
+/* nav links (desktop) */
 .nav-links {
   display: flex;
   gap: 25px;
@@ -59,14 +59,14 @@ body {
   text-decoration: none;
   color: #5aabc6;
   font-weight: 500;
-  transition: 0.3s;
+  transition: color .25s ease;
 }
 
 .nav-links a:hover {
   color: #0082a8;
 }
 
-/* Botón menú hamburguesa (☰) */
+/* menú hamburguesa (oculto en desktop) */
 .menu-btn {
   display: none;
   font-size: 40px;
@@ -76,15 +76,15 @@ body {
   cursor: pointer;
 }
 
-/* ===== Sidebar (solo móvil) ===== */
+/* sidebar (mobile) */
 .sidebar {
   position: absolute;
   top: 90px;
   left: 0;
   width: 250px;
-  height: calc(100vh - -460px);
+  height: calc(100vh - 90px);
   background-color: #f4f7f9;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.08);
   padding-top: 20px;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
@@ -95,43 +95,29 @@ body {
   transform: translateX(0);
 }
 
+.menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .menu a {
   margin-left: 1.5rem;
   text-decoration: none;
   color: #5aabc6;
   font-weight: 500;
   transition: color 0.2s ease;
-  font-size: large;
+  font-size: 1.05rem;
 }
 
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none; /* ocultar menú superior */
-  }
-
-  .menu-btn {
-    display: block; /* mostrar botón ☰ */
-  }
-
-  /* En móvil, la navbar sí es fija */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-
-  .sidebar {
-    display: block;
-  }
-}
-
+/* hover nav */
 .navbar nav a:hover {
-    color: #0e5d72;
+  color: #0e5d72;
 }
 
-/* ---------- HERO SECTION ---------- */
+/* ================ HERO ================ */
 .hero {
   background-color: #1997b9;
   color: white;
@@ -163,13 +149,12 @@ body {
   line-height: 1.6;
 }
 
-/* ---------- MAIN CONTENT ---------- */
+/* ================ MAIN CONTENT ================ */
 .content {
   max-width: 1100px;
   margin: 2rem auto;
   padding: 2rem;
 }
-
 
 .filters {
   display: flex;
@@ -218,4 +203,194 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
   color: #1f2937;
+}
+
+/* ================ BOTONES REUTILIZABLES ================ */
+.primary-btn {
+  background: #1997b9;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.primary-btn:hover { opacity: 0.95; transform: translateY(-1px); transition: .15s; }
+
+.small-muted-btn {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #374151;
+}
+
+/* ================ MODAL ================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,10,0.45);
+  z-index: 2000;
+}
+.modal-content {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  width: 380px;
+  max-width: 92%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+.modal-content h3 { margin-bottom: 8px; color:#133a44; }
+.modal-content label { display:block; margin-top:8px; font-weight:600; color:#374151; }
+.modal-content input, .modal-content select, .modal-content textarea {
+  width:100%; padding:8px; margin-top:6px; border-radius:6px; border:1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+.close-btn { background:none; border:none; font-size:22px; float:right; cursor:pointer; }
+
+/* ================ LISTA DE RECORDATORIOS ================ */
+#listaRecordatorios {
+  margin-top: 1rem;
+}
+
+/* tarjeta principal */
+#listaRecordatorios .card-item {
+  background:#e1f0fb;
+  padding:1rem;
+  margin-bottom:1rem;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  box-shadow: 0 2px 8px rgba(25,151,185,0.06);
+}
+
+/* metadatos */
+#listaRecordatorios .meta {
+  color:#374151;
+  font-size:0.95rem;
+  margin-bottom: 6px;
+}
+
+/* acciones en la tarjeta (column on desktop) */
+#listaRecordatorios .actions {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  align-items:flex-end;
+}
+
+/* botones dentro de acciones */
+#listaRecordatorios .actions button {
+  padding:6px 8px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* estilo de eliminar */
+#listaRecordatorios .actions button[data-action="delete"] {
+  background:#e14c4c;
+  color:#fff;
+  border:none;
+}
+
+/* botón abrir modal / guardar */
+#listaRecordatorios .actions button[data-action="saveEdit"],
+#listaRecordatorios .actions button[data-action="editModal"] {
+  background: #1997b9;
+  color: #fff;
+  border: none;
+}
+
+/* ================ EDICIÓN INLINE ================ */
+.editable {
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px;
+  border: 1px dashed transparent;
+  min-width: 120px;
+  display: inline-block;
+}
+.editable:focus {
+  outline: none;
+  border-color: #1997b9;
+  background: #f8feff;
+}
+
+/* input datetime_INLINE */
+.editable-date {
+  padding:6px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+/* select inline */
+.editable-select {
+  padding:6px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+/* snooze select */
+.snooze-select {
+  padding:6px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+  background:#fff;
+}
+
+/* indicador PRÓXIMO */
+#listaRecordatorios .próximo,
+#listaRecordatorios .proximo {
+  color:#b33;
+  font-weight:700;
+  margin-top:6px;
+}
+
+/* ================ TOAST ================ */
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: #222;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  z-index: 3000;
+  max-width: 320px;
+  word-wrap: break-word;
+}
+
+/* ================ RESPONSI VIDAD Y AJUSTES MÓVIL ================ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-btn { display: block; }
+  .navbar { position: fixed; top: 0; left: 0; width: 100%; }
+  body { padding-top: 76px; } /* espacio para navbar fija */
+  .sidebar { display: block; top: 76px; height: calc(100vh - 76px); }
+  .modal-content { width: 92%; }
+  .filters { flex-direction: column; gap: 12px; }
+  .card-item { flex-direction: column; align-items: flex-start; }
+  #listaRecordatorios .actions { width: 100%; flex-direction: row; justify-content: space-between; margin-top: 8px; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding-top: 110px; } /* espacio visual si navbar fija */
+  .logo { font-size: 20px; }
+}
+
+/* ================ Pequeños retoques estéticos ================ */
+a { color: inherit; }
+button { font-family: inherit; font-size: 0.95rem; }
+
+/* accesibilidad: foco visible */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(25,151,185,0.18);
+  outline-offset: 2px;
 }
