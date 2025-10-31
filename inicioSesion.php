@@ -69,7 +69,7 @@
                   session_start();
                   $_SESSION['id_usuario'] = $usuario['id_usuario'];
                   $_SESSION['nombre'] = $usuario['nombre'];
-
+                   $_SESSION['email'] = $usuario['email']; // ✅ Guarda el correo del usuario
                   echo "<script>
                     alert('Inicio de sesión exitoso. ¡Bienvenido, " . $usuario['nombre'] . "!');
                     window.location.href = 'sesionIniciada.php';

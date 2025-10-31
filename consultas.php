@@ -1,3 +1,9 @@
+<?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -87,8 +93,11 @@
         include 'conectar.php';
 
         try {
-            $sql = "SELECT * FROM consultas ORDER BY fecha_consulta DESC";
-            $stmt = $consulta->query($sql);
+            $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario logueado
+
+            $sql = "SELECT * FROM consultas WHERE id_usuario = :id_usuario ORDER BY fecha_consulta DESC";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([':id_usuario' => $correo_usuario]);
 
             if ($stmt->rowCount() > 0) {
                 echo '<div class="consultas-grid">';
@@ -165,34 +174,35 @@
 
 
     <?php
-        include 'conectar.php';
-        if(isset($_POST['btnConsulta'])){
-            $fecha_consulta = $_POST['fecha-consulta'];
-            $nombre_medico = $_POST['nombre-medico'];
-            $especialidad = $_POST['especialidad'];
-            $diagnostico = $_POST['diagnostico'];
-            $tratamiento = $_POST['tratamiento'];
-            $notas_adicionales = $_POST['notas-adicionales'];
-
-            try {
-                $sql = "INSERT INTO consultas (fecha_consulta, nombre_medico, especialidad, diagnostico, tratamiento, notas_adicionales) 
-                        VALUES (:fecha_consulta, :nombre_medico, :especialidad, :diagnostico, :tratamiento, :notas_adicionales)";
-                $stmt = $consulta->prepare($sql);
-                $stmt->execute([
-                    ':fecha_consulta' => $fecha_consulta,
-                    ':nombre_medico' => $nombre_medico,
-                    ':especialidad' => $especialidad,
-                    ':diagnostico' => $diagnostico,
-                    ':tratamiento' => $tratamiento,
-                    ':notas_adicionales' => $notas_adicionales
-                ]);
-                echo "<script>alert('Consulta registrada exitosamente.');</script>";
-            } catch (PDOException $e) {
-                echo "ERROR: " . $e->getMessage();
-            }
-        }
-    
+      include 'conectar.php';
+      if(isset($_POST['btnConsulta'])){
+          $fecha_consulta = $_POST['fecha-consulta'];
+          $nombre_medico = $_POST['nombre-medico'];
+          $especialidad = $_POST['especialidad'];
+          $diagnostico = $_POST['diagnostico'];
+          $tratamiento = $_POST['tratamiento'];
+          $notas_adicionales = $_POST['notas-adicionales'];
+          $correo_usuario = $_SESSION['email']; // ✅ Obtener el correo del usuario desde la sesión
+          try {
+              $sql = "INSERT INTO consultas (id_usuario, fecha_consulta, nombre_medico, especialidad, diagnostico, tratamiento, notas_adicionales) 
+                      VALUES (:id_usuario, :fecha_consulta, :nombre_medico, :especialidad, :diagnostico, :tratamiento, :notas_adicionales)";
+              $stmt = $consulta->prepare($sql);
+              $stmt->execute([
+                  ':id_usuario' => $correo_usuario, // ✅ Usar el correo del usuario para relacionar la consulta
+                  ':fecha_consulta' => $fecha_consulta,
+                  ':nombre_medico' => $nombre_medico,
+                  ':especialidad' => $especialidad,
+                  ':diagnostico' => $diagnostico,
+                  ':tratamiento' => $tratamiento,
+                  ':notas_adicionales' => $notas_adicionales
+              ]);
+              echo "<script>alert('Consulta registrada exitosamente.');</script>";
+          } catch (PDOException $e) {
+              echo "ERROR: " . $e->getMessage();
+          }
+      }
     ?>
+
 
     <!-- MODAL DETALLES CONSULTA -->
     <div id="modalDetalles" class="modal">

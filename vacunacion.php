@@ -1,3 +1,10 @@
+<?php
+  if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -82,6 +89,41 @@
         </button>
       </div>
     </div>
+
+    <!-- ✅ Sección de tarjetas -->
+    <section class="consultas-lista grid-vacunas">
+      <?php
+        include 'conectar.php';
+        $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario logueado
+
+        try{
+          // Filtrar vacunas por el usuario logueado
+          $sql = "SELECT * FROM vacunas WHERE id_usuario = :id_usuario ORDER BY fecha_administracion DESC";
+          $stmt = $consulta->prepare($sql);
+          $stmt->execute([':id_usuario' => $correo_usuario]);
+
+          if ($stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              echo "
+                <div class='card'>
+                  <div class='card-content'>
+                    <h3>{$row['nombre_vacuna']}</h3>
+                    <p><strong>Fecha:</strong> {$row['fecha_administracion']}</p>
+                    <p><strong>Proveedor:</strong> {$row['proveedor_salud']}</p>
+                    <button class='btn-ver' onclick=\"verDetalles('{$row['nombre_vacuna']}', '{$row['fecha_administracion']}', '{$row['numero_lote']}', '{$row['proveedor_salud']}', '{$row['notas_adicionales']}')\">Ver detalles</button>
+                  </div>
+                </div>
+              ";
+            }
+          }else {
+            echo "<p class='no-vacunas'>No hay vacunas registradas.</p>";
+          }          
+        }catch (PDOException $e) {
+            echo "Error al cargar estudios: " . $e->getMessage();
+        }
+      ?>
+    </section>
+
   </main>
 
   <!-- Modal: Agregar Nueva Vacuna -->
@@ -90,7 +132,7 @@
       <span class="cerrar cerrarVacuna">&times;</span>
       <h2>Registrar Vacuna</h2>
 
-      <form>
+      <form method="POST">
         <label for="vacuna">Nombre de la Vacuna</label>
         <input list="listaVacunas" id="vacuna" name="vacuna" placeholder="Seleccione o escriba una vacuna" required />
         <datalist id="listaVacunas">
@@ -118,20 +160,35 @@
     </div>
   </div>
 
+  <!-- ✅ Modal de detalles PARA LAS VACUNAS-->
+  <div id="modalDetalles" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar cerrarDetalles">&times;</span>
+      <h2>Detalles de la Vacuna</h2>
+      <p><strong>Nombre:</strong> <span id="detalleNombre"></span></p>
+      <p><strong>Fecha:</strong> <span id="detalleFecha"></span></p>
+      <p><strong>Número de lote:</strong> <span id="detalleLote"></span></p>
+      <p><strong>Proveedor:</strong> <span id="detalleProveedor"></span></p>
+      <p><strong>Notas:</strong></p>
+      <p id="detalleNotas"></p>
+    </div>
+  </div>
+
     <?php
     include 'conectar.php';
-    if(isset($_POST['btnGuadarVacuna'])){
+    if(isset($_POST['btnGuardarVacuna'])){
         $nombreVacuna = $_POST['vacuna'];
-        $fechaAdministracion = $_POST['fehca-vacuna-administrada'];
+        $fechaAdministracion = $_POST['fecha-vacuna-administrada'];
         $numeroLote = $_POST['lote-vacuna'];
         $proveedorSalud = $_POST['provedor'];
         $notasAdicionales = $_POST['notas-adicioanales'];
-
+        $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario desde la sesión
         try {
-            $sql = "INSERT INTO vacunas (nombre_vacuna, fecha_administracion, numero_lote, proveedor_salud, notas_adicionales) 
-                    VALUES (:nombreVacuna, :fechaAdministracion, :numeroLote, :proveedorSalud, :notasAdicionales)";
-            $stmt = $conn->prepare($sql);
-            $stmt->excute([
+            $sql = "INSERT INTO vacunas (id_usuario, nombre_vacuna, fecha_administracion, numero_lote, proveedor_salud, notas_adicionales) 
+                    VALUES (:id_usuario, :nombreVacuna, :fechaAdministracion, :numeroLote, :proveedorSalud, :notasAdicionales)";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([
+                ':id_usuario' => $correo_usuario,
                 ':nombreVacuna' => $nombreVacuna,
                 ':fechaAdministracion' => $fechaAdministracion,
                 ':numeroLote' => $numeroLote,
@@ -152,7 +209,7 @@
       <span class="cerrar cerrarRecordatorio">&times;</span>
       <h2>Crear Recordatorio</h2>
 
-      <form>
+      <form method="POST">
         <label for="recordatorio">Nombre de la Vacuna</label>
         <input list="listaVacunasRecordatorio" id="recordatorio" name="recordatorio" placeholder="Seleccione o escriba una vacuna" required />
         <datalist id="listaVacunasRecordatorio">
@@ -179,12 +236,14 @@
         $nombreVacuna = $_POST['recordatorio'];
         $fechaRecordatorio = $_POST['fecha-recordatorio'];
         $notas = $_POST['notas-adicionales'];
-
+        session_start(); // Iniciar la sesión
+        $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario desde la sesión
         try {
-            $sql = "INSERT INTO recordatorios (nombre_vacuna, fecha_recordatorio, notas) 
-                    VALUES (:nombreVacuna, :fechaRecordatorio, :notas)";
-            $stmt = $conn->prepare($sql);
-            $stmt->excute([
+            $sql = "INSERT INTO recordatorios (id_usuario, nombre_vacuna, fecha_recordatorio, notas) 
+                    VALUES (:id_usuario, :nombreVacuna, :fechaRecordatorio, :notas)";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([
+                ':id_usuario' => $correo_usuario,
                 ':nombreVacuna' => $nombreVacuna,
                 ':fechaRecordatorio' => $fechaRecordatorio,
                 ':notas' => $notas
@@ -248,6 +307,35 @@
     });
   </script>
 
+
+    
+  <script>
+    //sCRIPT PARA EL MENU RESPONSIVE Y EL MODAL DE DETALLES DE VACUNAS
+    // Menú responsive
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    menuBtn.addEventListener("click", () => sidebar.classList.toggle("active"));
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", () => sidebar.classList.remove("active"));
+    });
+
+    // Modal detalles
+    const modalDetalles = document.getElementById("modalDetalles");
+    const cerrarDetalles = document.querySelector(".cerrarDetalles");
+
+    function verDetalles(nombre, fecha, lote, proveedor, notas) {
+      document.getElementById("detalleNombre").textContent = nombre;
+      document.getElementById("detalleFecha").textContent = fecha;
+      document.getElementById("detalleLote").textContent = lote;
+      document.getElementById("detalleProveedor").textContent = proveedor;
+      document.getElementById("detalleNotas").textContent = notas || "Sin notas adicionales";
+      modalDetalles.style.display = "flex";
+    }
+
+    cerrarDetalles.onclick = () => modalDetalles.style.display = "none";
+    window.onclick = e => { if (e.target === modalDetalles) modalDetalles.style.display = "none"; }
+  </script>
 
 </body>
 

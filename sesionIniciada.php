@@ -1,3 +1,9 @@
+<?php
+  if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -76,8 +82,11 @@
         include 'conectar.php';
 
         try {
-            $sql = "SELECT * FROM consultas ORDER BY fecha_consulta DESC";
-            $stmt = $consulta->query($sql);
+            $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario logueado
+
+            $sql = "SELECT * FROM consultas WHERE id_usuario = :id_usuario ORDER BY fecha_consulta DESC";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([':id_usuario' => $correo_usuario]);
 
             if ($stmt->rowCount() > 0) {
                 echo '<div class="consultas-grid">';
@@ -123,8 +132,11 @@
         include 'conectar.php';
 
         try {
-            $sql = "SELECT * FROM estudios ORDER BY fecha_estudio DESC";
-            $stmt = $consulta->query($sql);
+            $correo_usuario = $_SESSION['email']; // Obtener el correo del usuario logueado
+
+            $sql = "SELECT * FROM estudios WHERE id_usuario = :id_usuario ORDER BY fecha_estudio DESC";
+            $stmt = $consulta->prepare($sql);
+            $stmt->execute([':id_usuario' => $correo_usuario]);
 
             if ($stmt->rowCount() > 0) {
                 echo '<div class="estudios-grid">';
@@ -217,12 +229,13 @@
           $diagnostico = $_POST['diagnostico'];
           $tratamiento = $_POST['tratamiento'];
           $notas_adicionales = $_POST['notas-adicionales'];
-
+          $correo_usuario = $_SESSION['email']; // ✅ Obtener el correo del usuario desde la sesión
           try {
-              $sql = "INSERT INTO consultas (fecha_consulta, nombre_medico, especialidad, diagnostico, tratamiento, notas_adicionales) 
-                      VALUES (:fecha_consulta, :nombre_medico, :especialidad, :diagnostico, :tratamiento, :notas_adicionales)";
+              $sql = "INSERT INTO consultas (id_usuario, fecha_consulta, nombre_medico, especialidad, diagnostico, tratamiento, notas_adicionales) 
+                      VALUES (:id_usuario, :fecha_consulta, :nombre_medico, :especialidad, :diagnostico, :tratamiento, :notas_adicionales)";
               $stmt = $consulta->prepare($sql);
               $stmt->execute([
+                  ':id_usuario' => $correo_usuario, // ✅ Usar el correo del usuario para relacionar la consulta
                   ':fecha_consulta' => $fecha_consulta,
                   ':nombre_medico' => $nombre_medico,
                   ':especialidad' => $especialidad,
@@ -235,7 +248,6 @@
               echo "ERROR: " . $e->getMessage();
           }
       }
-    
     ?>
 
 
@@ -289,14 +301,16 @@
         move_uploaded_file($ruta_archivo, $destino);
 
         $notas_adicionales = $_POST['notas-adicionales'];
-
+        $correo_usuario = $_SESSION['email']; // ✅ Obtener el correo del usuario desde la sesión
+        
         try {
-            $sql = "INSERT INTO estudios (nombre_estudio, tipo_estudio, 
+            $sql = "INSERT INTO estudios (id_usuario, nombre_estudio, tipo_estudio, 
                                 fecha_estudio, notas_adicionales, direccion_archivo) 
-                    VALUES (:nombre_estudio, :tipo_estudio, 
+                    VALUES (:id_usuario, :nombre_estudio, :tipo_estudio, 
                               :fecha_estudio, :notas_adicionales, :base_datos)";
             $stmt = $consulta->prepare($sql);
             $stmt->execute([
+                ':id_usuario' => $correo_usuario, // ✅ Usar el correo del usuario para relacionar el estudio
                 ':nombre_estudio' => $nombre_estudio,
                 ':tipo_estudio' => $tipo_estudio,
                 ':fecha_estudio' => $fecha_estudio,
