@@ -70,6 +70,47 @@
         <h3>Consultas Médicas Recientes</h3>
         <button class="btn btn-small">+ Nueva Consulta</button>
       </div>
+
+      <?php
+        include 'conectar.php';
+
+        try {
+            $sql = "SELECT * FROM consultas ORDER BY fecha_consulta DESC";
+            $stmt = $consulta->query($sql);
+
+            if ($stmt->rowCount() > 0) {
+                echo '<div class="consultas-grid">';
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '
+                    <div class="tarjeta-consulta" 
+                        data-id="' . htmlspecialchars($fila["id_consulta"]) . '"
+                        data-especialidad="' . htmlspecialchars($fila["especialidad"]) . '"
+                        data-medico="' . htmlspecialchars($fila["nombre_medico"]) . '"
+                        data-fecha="' . htmlspecialchars($fila["fecha_consulta"]) . '"
+                        data-diagnostico="' . htmlspecialchars($fila["diagnostico"]) . '"
+                        data-tratamiento="' . htmlspecialchars($fila["tratamiento"]) . '"
+                        data-notas="' . htmlspecialchars($fila["notas_adicionales"]) . '">
+                        
+                        <div class="tarjeta-header">
+                            <h4>' . htmlspecialchars($fila["especialidad"]) . '</h4>
+                            <span class="icono">♡</span>
+                        </div>
+                        <p><strong>Dr.</strong> ' . htmlspecialchars($fila["nombre_medico"]) . '</p>
+                        <p><strong>Fecha:</strong> ' . date("M d, Y h:i a", strtotime($fila["fecha_consulta"])) . '</p>
+                        <p><strong>Diagnóstico:</strong> ' . htmlspecialchars($fila["diagnostico"]) . '</p>
+                        <button class="btn-detalles">Ver Detalles</button>
+                    </div>';
+                }
+                echo '</div>';
+            } else {
+                echo "<p>No hay consultas registradas aún.</p>";
+            }
+        } catch (PDOException $e) {
+            echo "Error al cargar consultas: " . $e->getMessage();
+        }
+        ?>
+
+
     </section>
 
     <section class="section">
