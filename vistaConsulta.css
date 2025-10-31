@@ -328,3 +328,47 @@ footer {
 .cerrar:hover {
   color: #000;
 }
+
+/* Modal Detalles Consulta */
+#modalDetalles {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#modalDetalles .modal-contenido {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  animation: aparecer 0.3s ease;
+}
+
+#modalDetalles p {
+  margin-bottom: 10px;
+}
+
+.cerrar-detalles {
+  float: right;
+  font-size: 25px;
+  cursor: pointer;
+  color: #666;
+}
+
+.cerrar-detalles:hover {
+  color: #000;
+}
+
+@keyframes aparecer {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

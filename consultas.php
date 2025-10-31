@@ -65,8 +65,6 @@
 
     <!-- Filtro y botón -->
     <section class="filtro-consultas">
-
-        
         <div class="filtro">
             <label for="especialidad">Filtrar por Especialidad</label>
             <select id="especialidad">
@@ -76,13 +74,53 @@
                 <option>Dermatología</option>
             </select>
         </div>
-
         <button class="btn-agregar">+ Agregar Consulta</button>
     </section>
 
+
+
     <!-- Aquí podrían listarse las consultas -->
     <section class="consultas-lista">
-        <p>No hay consultas registradas aún.</p>
+        
+      <?php
+      // Conexión a la base de datos para obtener Y mostrar las consultas
+        include 'conectar.php';
+
+        try {
+            $sql = "SELECT * FROM consultas ORDER BY fecha_consulta DESC";
+            $stmt = $consulta->query($sql);
+
+            if ($stmt->rowCount() > 0) {
+                echo '<div class="consultas-grid">';
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '
+                    <div class="tarjeta-consulta" 
+                        data-id="' . htmlspecialchars($fila["id_consulta"]) . '"
+                        data-especialidad="' . htmlspecialchars($fila["especialidad"]) . '"
+                        data-medico="' . htmlspecialchars($fila["nombre_medico"]) . '"
+                        data-fecha="' . htmlspecialchars($fila["fecha_consulta"]) . '"
+                        data-diagnostico="' . htmlspecialchars($fila["diagnostico"]) . '"
+                        data-tratamiento="' . htmlspecialchars($fila["tratamiento"]) . '"
+                        data-notas="' . htmlspecialchars($fila["notas_adicionales"]) . '">
+                        
+                        <div class="tarjeta-header">
+                            <h4>' . htmlspecialchars($fila["especialidad"]) . '</h4>
+                            <span class="icono">♡</span>
+                        </div>
+                        <p><strong>Dr.</strong> ' . htmlspecialchars($fila["nombre_medico"]) . '</p>
+                        <p><strong>Fecha:</strong> ' . date("M d, Y h:i a", strtotime($fila["fecha_consulta"])) . '</p>
+                        <p><strong>Diagnóstico:</strong> ' . htmlspecialchars($fila["diagnostico"]) . '</p>
+                        <button class="btn-detalles">Ver Detalles</button>
+                    </div>';
+                }
+                echo '</div>';
+            } else {
+                echo "<p>No hay consultas registradas aún.</p>";
+            }
+        } catch (PDOException $e) {
+            echo "Error al cargar consultas: " . $e->getMessage();
+        }
+      ?>
     </section>
 
     <footer>
@@ -156,6 +194,20 @@
     
     ?>
 
+    <!-- MODAL DETALLES CONSULTA -->
+    <div id="modalDetalles" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar cerrar-detalles">&times;</span>
+        <h2>Detalles de la Consulta</h2>
+
+        <p><strong>Especialidad:</strong> <span id="det-especialidad"></span></p>
+        <p><strong>Médico:</strong> <span id="det-medico"></span></p>
+        <p><strong>Fecha:</strong> <span id="det-fecha"></span></p>
+        <p><strong>Diagnóstico:</strong> <span id="det-diagnostico"></span></p>
+        <p><strong>Tratamiento:</strong> <span id="det-tratamiento"></span></p>
+        <p><strong>Notas:</strong> <span id="det-notas"></span></p>
+      </div>
+    </div>
 
     <!-- Script -->
     <script>
@@ -180,6 +232,38 @@
             }
         };
     </script>
+
+
+    <script>
+        // SCRIPT MODAL DETALLES DE CONSULTA
+        const modalDetalles = document.getElementById("modalDetalles");
+        const cerrarDetalles = document.querySelector(".cerrar-detalles");
+
+        document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("btn-detalles")) {
+            const card = e.target.closest(".tarjeta-consulta");
+
+            // Tomar los valores del data-atributo
+            document.getElementById("det-especialidad").textContent = card.dataset.especialidad;
+            document.getElementById("det-medico").textContent = card.dataset.medico;
+            document.getElementById("det-fecha").textContent = card.dataset.fecha;
+            document.getElementById("det-diagnostico").textContent = card.dataset.diagnostico || "—";
+            document.getElementById("det-tratamiento").textContent = card.dataset.tratamiento || "—";
+            document.getElementById("det-notas").textContent = card.dataset.notas || "—";
+
+            modalDetalles.style.display = "flex";
+        }
+        });
+
+        cerrarDetalles.onclick = () => {
+        modalDetalles.style.display = "none";
+        };
+
+        window.onclick = (event) => {
+        if (event.target === modalDetalles) modalDetalles.style.display = "none";
+        };
+    </script>
+
     <script src="JS/consultas.js"></script
 </body>
 </html>

@@ -72,6 +72,7 @@
       </div>
 
       <?php
+      // Conexión a la base de datos para obtener Y mostrar las consultas
         include 'conectar.php';
 
         try {
@@ -108,9 +109,7 @@
         } catch (PDOException $e) {
             echo "Error al cargar consultas: " . $e->getMessage();
         }
-        ?>
-
-
+      ?>
     </section>
 
     <section class="section">
@@ -118,6 +117,44 @@
         <h3>Estudios y Resultados Recientes</h3>
         <button class="btn btn-small">+ Subir Estudio</button>
       </div>
+
+      <?php
+       // Conexión a la base de datos para obtener Y mostrar los estudios
+        include 'conectar.php';
+
+        try {
+            $sql = "SELECT * FROM estudios ORDER BY fecha_estudio DESC";
+            $stmt = $consulta->query($sql);
+
+            if ($stmt->rowCount() > 0) {
+                echo '<div class="estudios-grid">';
+                while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '
+                    <div class="tarjeta-estudio"
+                        data-id="' . htmlspecialchars($fila["id_estudio"]) . '"
+                        data-nombre="' . htmlspecialchars($fila["nombre_estudio"]) . '"
+                        data-tipo="' . htmlspecialchars($fila["tipo_estudio"]) . '"
+                        data-fecha="' . htmlspecialchars($fila["fecha_estudio"]) . '"
+                        data-notas="' . htmlspecialchars($fila["notas_adicionales"]) . '"
+                        data-archivo="' . htmlspecialchars($fila["direccion_archivo"]) . '">
+                        
+                        <div class="tarjeta-header">
+                            <h4>' . htmlspecialchars($fila["tipo_estudio"]) . '</h4>
+                            <span class="icono">📎</span>
+                        </div>
+                        <p><strong>Nombre:</strong> ' . htmlspecialchars($fila["nombre_estudio"]) . '</p>
+                        <p><strong>Fecha:</strong> ' . date("M d, Y", strtotime($fila["fecha_estudio"])) . '</p>
+                        <button class="btn-detalles-estudio">Ver Detalles</button>
+                    </div>';
+                }
+                echo '</div>';
+            } else {
+                echo "<p>No hay estudios registrados aún.</p>";
+            }
+        } catch (PDOException $e) {
+            echo "Error al cargar estudios: " . $e->getMessage();
+        }
+      ?>
     </section>
 
     <section class="section acciones">
@@ -273,11 +310,36 @@
     }
     ?>
 
+        <!-- MODAL DETALLES CONSULTA -->
+    <div id="modalDetalles" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar cerrar-detalles">&times;</span>
+        <h2>Detalles de la Consulta</h2>
 
+        <p><strong>Especialidad:</strong> <span id="det-especialidad"></span></p>
+        <p><strong>Médico:</strong> <span id="det-medico"></span></p>
+        <p><strong>Fecha:</strong> <span id="det-fecha"></span></p>
+        <p><strong>Diagnóstico:</strong> <span id="det-diagnostico"></span></p>
+        <p><strong>Tratamiento:</strong> <span id="det-tratamiento"></span></p>
+        <p><strong>Notas:</strong> <span id="det-notas"></span></p>
+      </div>
+    </div>
 
+    <!-- MODAL DETALLES ESTUDIO -->
+    <div id="modalDetallesEstudio" class="modal">
+      <div class="modal-contenido">
+        <span class="cerrar cerrar-detalle-estudio">&times;</span>
+        <h2>Detalles del Estudio</h2>
 
-
-
+        <p><strong>Nombre:</strong> <span id="est-nombre"></span></p>
+        <p><strong>Tipo:</strong> <span id="est-tipo"></span></p>
+        <p><strong>Fecha:</strong> <span id="est-fecha"></span></p>
+        <p><strong>Notas:</strong> <span id="est-notas"></span></p>
+        <p><strong>Archivo:</strong> 
+          <a id="est-archivo" href="#" target="_blank">Ver archivo adjunto</a>
+        </p>
+      </div>
+    </div>
 
   <!-- SCRIPT PRINCIPAL -->
   <script>
@@ -313,5 +375,71 @@
       if (event.target === modalEstudio) modalEstudio.style.display = "none";
     };
   </script>
+
+  <script>
+    // SCRIPT MODAL DETALLES DE CONSULTA
+    const modalDetalles = document.getElementById("modalDetalles");
+    const cerrarDetalles = document.querySelector(".cerrar-detalles");
+
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("btn-detalles")) {
+        const card = e.target.closest(".tarjeta-consulta");
+
+        // Tomar los valores del data-atributo
+        document.getElementById("det-especialidad").textContent = card.dataset.especialidad;
+        document.getElementById("det-medico").textContent = card.dataset.medico;
+        document.getElementById("det-fecha").textContent = card.dataset.fecha;
+        document.getElementById("det-diagnostico").textContent = card.dataset.diagnostico || "—";
+        document.getElementById("det-tratamiento").textContent = card.dataset.tratamiento || "—";
+        document.getElementById("det-notas").textContent = card.dataset.notas || "—";
+
+        modalDetalles.style.display = "flex";
+      }
+    });
+
+    cerrarDetalles.onclick = () => {
+      modalDetalles.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modalDetalles) modalDetalles.style.display = "none";
+    };
+  </script>
+
+  <script>
+    // SCRIPT MODAL DETALLES ESTUDIO
+    const modalDetallesEstudio = document.getElementById("modalDetallesEstudio");
+    const cerrarDetalleEstudio = document.querySelector(".cerrar-detalle-estudio");
+
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("btn-detalles-estudio")) {
+        const card = e.target.closest(".tarjeta-estudio");
+
+        // Llenar los datos del modal
+        document.getElementById("est-nombre").textContent = card.dataset.nombre;
+        document.getElementById("est-tipo").textContent = card.dataset.tipo;
+        document.getElementById("est-fecha").textContent = card.dataset.fecha;
+        document.getElementById("est-notas").textContent = card.dataset.notas || "—";
+
+        // Enlace del archivo
+        const linkArchivo = document.getElementById("est-archivo");
+        linkArchivo.href = card.dataset.archivo;
+        linkArchivo.textContent = "Ver archivo";
+
+        modalDetallesEstudio.style.display = "flex";
+      }
+    });
+
+    cerrarDetalleEstudio.onclick = () => {
+      modalDetallesEstudio.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modalDetallesEstudio)
+        modalDetallesEstudio.style.display = "none";
+    };
+  </script>
+
+
 </body>
 </html>
